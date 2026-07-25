@@ -1,0 +1,387 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Nexus 第二章：从一人即团队，到团队拥有组织能力</title>
+    <meta
+      name="description"
+      content="上一章讲一个人怎样借助 Agent 成为一支团队；这一章讲当一个人拥有虚拟团队后，怎样让这支团队长期协作、不失忆、不失控，并且越做越好——记忆引擎与编排引擎的双引擎成长飞轮。"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <header class="topbar" aria-label="Nexus 第二章导航">
+      <a class="brand-mark" href="#top" aria-label="回到顶部">
+        <span class="brand-mark__glyph">N</span>
+        <span>
+          <strong>Nexus</strong>
+          <small>Chapter II · 项目系统</small>
+        </span>
+      </a>
+      <nav class="nav-links" aria-label="章节导航">
+        <a href="#p1">承接</a>
+        <a href="#p2">为什么乱</a>
+        <a href="#p3">项目层</a>
+        <a href="#p4">总领飞轮</a>
+        <a href="#p5">记忆引擎</a>
+        <a href="#p6">编排引擎</a>
+        <a href="#p7">互补闭环</a>
+        <a href="#p8">价值示例</a>
+        <a href="#p9">成长蓝图</a>
+        <a href="#p10">收束</a>
+      </nav>
+      <button class="presentation-toggle" type="button" aria-label="进入演讲模式">演讲模式</button>
+    </header>
+
+    <main id="top">
+      <!-- ============ 上半场 ============ -->
+
+      <!-- P1 承接 -->
+      <section class="slide slide--hero" id="p1" data-half="上半场 · 为什么需要这套系统">
+        <div class="slide__inner">
+          <p class="eyebrow">CHAPTER II · 01 &nbsp;/&nbsp; FROM TEAM TO ORGANIZATION</p>
+          <h1 class="reveal">从一人即团队，<br />到团队拥有组织能力</h1>
+          <p class="hero__sub reveal" data-delay="2">
+            当一个人拥有虚拟团队，怎样让它长期协作，而<b>不失忆、不失控、不反复重来</b>？
+          </p>
+          <p class="hero__thesis reveal" data-delay="4">
+            拥有执行能力，不等于拥有项目能力。
+          </p>
+        </div>
+      </section>
+
+      <!-- P2 为什么还是乱 -->
+      <section class="slide" id="p2">
+        <div class="slide__inner">
+          <p class="eyebrow">CHAPTER II · 02 &nbsp;/&nbsp; WHY IT STILL BREAKS</p>
+          <h2 class="reveal">模型很强，项目为什么还是会乱？</h2>
+          <p class="lead reveal" data-delay="1">
+            模型能完成<b>一次任务</b>，不等于项目能跨越<b>几十次任务</b>稳定前进。
+          </p>
+          <div class="cards cards--4" data-build-step="1">
+            <article class="card reveal" data-delay="2"><span class="card__tag">分类</span><p>用户常常只知道"这里不舒服"，不知道它属于 UI、Bug、重构还是产品问题。</p></article>
+            <article class="card reveal" data-delay="3"><span class="card__tag">散落</span><p>每次任务都能局部完成，但决定散落在聊天、代码和不同文档里。</p></article>
+            <article class="card reveal" data-delay="4"><span class="card__tag">失忆</span><p>新对话不了解旧背景，旧经验又可能已经过期。</p></article>
+            <article class="card reveal" data-delay="5"><span class="card__tag">代偿</span><p>项目越做越大，人开始替 Agent 记忆、分类、分工和验收。</p></article>
+          </div>
+          <p class="pull reveal" data-delay="6" data-build-step="2">
+            如果最后还是由人记住一切、协调一切，我们真的获得了一支团队吗？
+          </p>
+        </div>
+      </section>
+
+      <!-- P3 项目层(三步渐显) -->
+      <section class="slide" id="p3">
+        <div class="slide__inner">
+          <p class="eyebrow">CHAPTER II · 03 &nbsp;/&nbsp; THE MISSING LAYER</p>
+          <h2 class="reveal">缺失的，不是能力；是项目层</h2>
+          <p class="lead reveal" data-delay="1">
+            所有人都在解决"怎么做"；很少有人把"项目怎样长期推进"做成一套<b>可安装、可验证的章程</b>。
+          </p>
+          <div class="arch" id="archStack">
+            <!-- 顶层:章程(最后出现,横跨并统领下两层) -->
+            <div class="arch__charter" data-step="3" data-build-step="3">
+              <span class="arch__badge">我们补上的项目层</span>
+              <strong>人机项目协作章程</strong>
+              <em>阶段 · 记忆 · 纪律 · 验收 · 授权</em>
+              <div class="arch__ties"><span></span><span></span></div>
+            </div>
+            <!-- 下两层能力(先出现) -->
+            <div class="arch__base">
+              <div class="arch__layer" data-step="2" data-build-step="2">
+                <span class="arch__k">运行时层</span>
+                <strong>运行时 / 编排框架 / 记忆存储</strong>
+                <em>工具调用、任务执行、Agent 分发、状态保存与暂停恢复。</em>
+              </div>
+              <div class="arch__layer" data-step="1" data-build-step="1">
+                <span class="arch__k">能力层</span>
+                <strong>模型 / Agent / Skill / 工具</strong>
+                <em>提供智能与专业能力：搜索、写代码、画页面、操作系统。</em>
+              </div>
+            </div>
+          </div>
+          <p class="transition reveal" data-delay="2" data-build-step="3">
+            我们不替代下面任何一层；我们决定它们<b>如何围绕一个项目长期协作</b>。
+          </p>
+        </div>
+      </section>
+
+      <!-- P4 总领结构：项目主线 + 两条引擎 -->
+      <section class="slide slide--flywheel" id="p4" data-half="上半场 · 这套章程怎样持续变好">
+        <div class="slide__inner slide__inner--wide">
+          <p class="eyebrow">CHAPTER II · 04 &nbsp;/&nbsp; THE TWO-ENGINE LOOP</p>
+          <h2 class="reveal">两条引擎，服务同一条项目主线</h2>
+          <p class="lead reveal" data-delay="1">
+            记忆引擎让主 Agent <b>更懂你的意图</b>；编排引擎让每次执行都留下<b>更高质量、可验证的记忆</b>。这就是最小成长闭环。
+          </p>
+          <div class="dual-loop">
+            <div class="dual-loop__spine" data-build-step="1">
+              <span class="dual-loop__k">项目主线</span>
+              <b>理解意图 → 问题单 → 垂直切片 → 验收证据</b>
+            </div>
+            <div class="dual-loop__engines" data-build-step="2">
+              <article class="engine engine--memory">
+                <span class="engine__label">记忆引擎</span>
+                <strong>范围 · 状态 · 检索 · 激活 · 沉淀</strong>
+                <em>让主 Agent 更了解你</em>
+              </article>
+              <div class="dual-loop__bridge">互相反哺</div>
+              <article class="engine engine--orch">
+                <span class="engine__label">编排引擎</span>
+                <strong>判断 · 路由 · 委派 · 回收 · 审查</strong>
+                <em>让每次执行更可验证</em>
+              </article>
+            </div>
+            <div class="dual-loop__feedback" data-build-step="3">
+              <span>验证后的执行结果</span><b>→</b><span>记忆候选 / 更新状态</span><b>→</b><span>下一轮更准确的意图理解</span>
+            </div>
+          </div>
+          <p class="govern reveal" data-delay="2" data-build-step="3">
+            不是两个孤立的模块，而是同一条项目主线上的<b>理解 → 编排 → 执行 → 验证 → 记忆 → 更好的理解</b>。
+          </p>
+        </div>
+      </section>
+
+      <!-- P5 记忆引擎：范围、类型、载体与冷热调用 -->
+      <section class="slide" id="p5">
+        <div class="slide__inner">
+          <p class="eyebrow">CHAPTER II · 05 &nbsp;/&nbsp; MEMORY ENGINE · COALA-INSPIRED</p>
+          <h2 class="reveal">记忆引擎：先分清“记什么、放哪里、何时调用”</h2>
+          <p class="lead reveal" data-delay="1">
+            记忆不是一堆聊天摘要，而是一套有边界的系统：<b>范围决定隔离，类型决定用途，载体决定落点，冷热决定调用时机</b>。
+          </p>
+          <div class="memory-scope-cards" data-build-step="1" aria-label="三层记忆范围">
+            <article class="memory-scope-card memory-scope-card--task">
+              <span>第一层 · 任务记忆</span><b>本轮临时上下文</b>
+              <p>当前计划、假设、正在处理的材料与对话状态。</p>
+              <em>任务结束后不自动长期保存</em>
+            </article>
+            <article class="memory-scope-card memory-scope-card--project">
+              <span>第二层 · 项目记忆 · 一期核心</span><b>当前项目的长期脉络</b>
+              <p>蓝图、架构、handoff、issue、attempt、fix、decision 与证据。</p>
+              <em>只在当前项目边界内调用</em>
+            </article>
+            <article class="memory-scope-card memory-scope-card--global">
+              <span>第三层 · 全局记忆</span><b>稳定的协作规则</b>
+              <p>AGENTS 协议、通用 gotcha 与明确确认的长期偏好。</p>
+              <em>跨项目传播必须显式确认</em>
+            </article>
+          </div>
+          <div class="memory-use-cases" data-build-step="2">
+            <article class="memory-case memory-case--task">
+              <span>现在正在做什么</span><b>“正在调整首页布局”</b>
+              <strong>调用：任务 / 工作记忆</strong><em>当前计划、假设和本轮上下文；任务结束后不自动长期保存。</em>
+            </article>
+            <article class="memory-case memory-case--issue">
+              <span>复盘 issue / 失败尝试</span><b>“上次这个页面很乱”</b>
+              <strong>调用：项目记忆 · projectmem</strong><em>查 issue、attempt、fix、decision；再用当前代码、测试和截图校对。</em>
+            </article>
+            <article class="memory-case memory-case--global">
+              <span>跨项目的稳定规则</span><b>“以后默认这样协作”</b>
+              <strong>调用：全局记忆 / AGENTS 协议</strong><em>只保存明确确认的规则与 gotcha，不把项目细节带去别的项目。</em>
+            </article>
+            <article class="memory-case memory-case--truth">
+              <span>判断当前事实</span><b>“现在代码到底是什么状态？”</b>
+              <strong>调用：外部真值层</strong><em>直接看代码、测试、配置和运行结果；它不是记忆，但可以推翻记忆。</em>
+            </article>
+          </div>
+          <div class="memory-temperature" data-build-step="3" aria-label="冷记忆与热记忆的调用时机">
+            <div class="memory-temperature__cold"><span>冷记忆</span><b>历史问题、旧决定、已知坑</b><em>用户说“上次 / 之前 / 继续”或当前任务确实需要时，才做范围受限检索。</em></div>
+            <div class="memory-temperature__arrow">需求触发 → 筛选范围 / 可信状态 / 当前证据 →</div>
+            <div class="memory-temperature__hot"><span>热记忆</span><b>本轮交接、计划、相关证据</b><em>只把当前任务真正需要的部分带进上下文；完成后形成候选，再降温。</em></div>
+          </div>
+          <p class="warn" data-build-step="4">
+            当前一期的核心不是“记得越多”，而是<b>不越界、不乱召回、有证据才升温</b>。
+          </p>
+          <p class="slide-refs" data-build-step="4">
+            理论参考：<a href="https://arxiv.org/abs/2309.02427" target="_blank" rel="noopener">CoALA：语言 Agent 的认知架构</a>
+          </p>
+        </div>
+      </section>
+
+      <!-- P6 编排引擎：Design Thinking → 两级路由 → Manager Pattern -->
+      <section class="slide" id="p6" data-half="下半场 · 系统怎样越合作越好">
+        <div class="slide__inner">
+          <p class="eyebrow">CHAPTER II · 06 &nbsp;/&nbsp; ORCHESTRATION ENGINE · MANAGER PATTERN</p>
+          <h2 class="reveal">编排引擎：主 Agent 理解意图，再把复杂协作留在后台</h2>
+          <p class="lead reveal" data-delay="1">
+            主 Agent 用 Design Thinking 先理解真实阻力，再判断项目阶段、本轮交付物与风险；随后用 Manager Pattern 分层委派，最后<b>回收、审查与验收</b>。
+          </p>
+          <div class="orch__thinking" data-build-step="1">
+            <span>共情 / 定义</span><b>→</b><span>构思</span><b>→</b><span>原型</span><b>→</b><span>测试</span>
+            <em>探索 · 启动 · 实施 · 循环返回</em>
+          </div>
+          <div class="orch__brief" data-build-step="1">
+            <div><span>用户感受</span><b>“这个页面很乱”</b></div>
+            <div><span>阶段判断</span><b>实施 · 体验问题</b></div>
+            <div><span>本轮交付物</span><b>一条 UI 垂直切片</b></div>
+            <div><span>验收标准</span><b>1280×720 无滚动</b></div>
+          </div>
+          <div class="orch__pipeline" data-build-step="2">
+            <div class="orch__node orch__node--user"><span>输入</span><b>一句感受</b><em>先理解，不急着分类</em></div>
+            <div class="orch__edge">→</div>
+            <div class="orch__node orch__node--lead"><span>Manager</span><b>主 Agent</b><em>阶段判断 · 问题单 · 风险</em></div>
+            <div class="orch__edge">→</div>
+            <div class="orch__workers orch__node--worker" id="orchWorker" aria-label="能力层级">
+              <span class="orch__tier orch__tier--frontier"><b>最强模型</b><em>架构 · 冲突裁决 · 高风险复核</em></span>
+              <span class="orch__tier orch__tier--balanced"><b>常规模型</b><em>开发 · 测试 · 文档</em></span>
+              <span class="orch__tier orch__tier--fast"><b>快速模型</b><em>搜索 · 分类 · 扫描</em></span>
+            </div>
+            <div class="orch__edge">→</div>
+            <div class="orch__node orch__node--review"><span>闭环</span><b>回收与验收</b><em>主 Agent 审查 · 交付 · 记忆</em></div>
+          </div>
+          <div class="orch-demo" data-build-step="3">
+            <div class="orch-demo__top">
+              <span>小示例 · 一次委派如何运转</span>
+              <button class="mini-cta mini-cta--warm" id="orchDemoRun" type="button">▶ 第一步</button>
+            </div>
+            <div class="orch-demo__graph" aria-label="主 Agent 将问题单委派给不同能力层级并回收结果">
+              <div class="orch-demo__node orch-demo__node--intent" data-orch-node="0"><b>感受</b><small>页面很乱</small></div>
+              <span class="orch-demo__edge" data-orch-edge="0">→</span>
+              <div class="orch-demo__node orch-demo__node--manager" data-orch-node="1"><b>主 Agent</b><small>形成问题单</small></div>
+              <span class="orch-demo__edge" data-orch-edge="1">→</span>
+              <div class="orch-demo__workers" data-orch-node="2"><span>架构 / 复核</span><span>实现 / 测试</span><span>搜索 / 扫描</span></div>
+              <span class="orch-demo__edge" data-orch-edge="2">→</span>
+              <div class="orch-demo__node orch-demo__node--accept" data-orch-node="3"><b>验收</b><small>证据回到主 Agent</small></div>
+            </div>
+            <div class="orch-demo__log" id="orchDemoLog" aria-live="polite">点击后，看“理解意图 → 问题单 → 委派 → 回收 → 验收”走完一轮。</div>
+          </div>
+          <p class="slide-refs orch__refs" data-build-step="3">
+            理论参考：<a href="https://www.anthropic.com/engineering/multi-agent-research-system" target="_blank" rel="noopener">Anthropic：Orchestrator–Worker 多 Agent 研究系统</a> ·
+            <a href="https://openai.com/business/guides-and-resources/a-practical-guide-to-building-ai-agents/" target="_blank" rel="noopener">OpenAI：Manager Pattern</a>
+          </p>
+        </div>
+      </section>
+
+      <!-- P7 双引擎互补闭环 -->
+      <section class="slide slide--flywheel" id="p7">
+        <div class="slide__inner slide__inner--wide">
+          <p class="eyebrow">CHAPTER II · 07 &nbsp;/&nbsp; TWO ENGINES, ONE PROJECT</p>
+          <h2 class="reveal">双引擎互补：一条闭环，让项目越做越懂你</h2>
+          <p class="lead reveal" data-delay="1">
+            记忆引擎让主 Agent <b>更好地理解意图</b>；编排引擎让每次执行产生<b>更高质量、可验证的记忆</b>。两者互相喂养，服务同一条项目主线。
+          </p>
+          <div class="complement-loop" data-build-step="1" aria-label="记忆引擎与编排引擎互相反哺的闭环">
+            <div class="complement-loop__ring" aria-hidden="true"></div>
+            <div class="complement-node complement-node--top"><span>项目主线</span><b>更准确的意图</b></div>
+            <div class="complement-node complement-node--memory"><span>记忆引擎</span><b>唤醒正确上下文</b><em>让主 Agent 更懂你</em></div>
+            <div class="complement-node complement-node--orch"><span>编排引擎</span><b>执行可验证切片</b><em>让协作更有纪律</em></div>
+            <div class="complement-node complement-node--bottom"><span>执行产物</span><b>高质量 · 可验证的记忆</b></div>
+            <div class="complement-loop__center">同一条<br />项目主线</div>
+            <span class="complement-arrow complement-arrow--left">→</span>
+            <span class="complement-arrow complement-arrow--right">→</span>
+            <span class="complement-arrow complement-arrow--bottom">↺</span>
+          </div>
+          <p class="govern reveal" data-delay="1" data-build-step="2">
+            这就是成长飞轮的最小闭环：<b>理解意图 → 编排执行 → 验证交付 → 记忆沉淀 → 更好的理解</b>。
+          </p>
+        </div>
+      </section>
+
+      <!-- P8 价值飞轮：保留作为具体示例 -->
+      <section class="slide slide--value" id="p8">
+        <div class="slide__inner slide__inner--wide">
+          <p class="eyebrow">CHAPTER II · 08 &nbsp;/&nbsp; VALUE IN MOTION</p>
+          <h2 class="reveal">价值不是记住更多，而是下一次少问你一遍</h2>
+          <p class="lead reveal" data-delay="1">
+            下面把一轮合作具体跑一遍：主 Agent 从理解你的感受开始，经过编排、执行、验证和记忆，最后把结果带回下一次对话。
+          </p>
+          <div class="value-fly value-fly--reference" id="valueFly">
+            <div class="value-fly__stage" data-build-step="1" aria-label="需求输入与理解、编排、执行、验证、记忆组成价值飞轮">
+              <div class="value-fly__ring"><span class="value-fly__pulse"></span></div>
+              <div class="value-fly__center"><strong>少重复沟通</strong><small>项目越做越省心</small></div>
+              <span class="value-fly__node value-fly__node--1" data-value-node="0">理解</span>
+              <span class="value-fly__node value-fly__node--2" data-value-node="1">编排</span>
+              <span class="value-fly__node value-fly__node--3" data-value-node="2">执行</span>
+              <span class="value-fly__node value-fly__node--4" data-value-node="3">验证</span>
+              <span class="value-fly__node value-fly__node--5" data-value-node="4">记忆</span>
+            </div>
+            <div class="value-fly__side" data-build-step="2">
+              <button class="cta" id="valueFlyRun" type="button">▶ 投入一次模糊需求</button>
+              <p class="value-fly__hint" id="valueFlyHint">点击后看一条模糊感受，如何变成下一次少问一遍。</p>
+              <div class="value-fly__log" id="valueFlyLog" aria-live="polite">
+                <div class="value-fly__row value-fly__row--input" data-value-step="0"><b>需求</b><span>用户：“我觉得这个页面看起来很乱。”</span></div>
+                <div class="value-fly__row value-fly__row--mem" data-value-step="1"><b>记忆</b><span>读取已确认的视觉原则与历史反馈。</span></div>
+                <div class="value-fly__row value-fly__row--orch" data-value-step="2"><b>编排</b><span>判断为体验切片，形成可观察的验收标准。</span></div>
+                <div class="value-fly__row" data-value-step="3"><b>执行</b><span>组织页面调查、实现与视觉验证。</span></div>
+                <div class="value-fly__row value-fly__row--evidence" data-value-step="4"><b>证据</b><span>测试、截图与用户确认共同验收。</span></div>
+                <div class="value-fly__row value-fly__row--mem" data-value-step="5"><b>记忆</b><span>沉淀经过验证的项目规则，带回下一轮理解。</span></div>
+              </div>
+              <div class="value-fly__compare">
+                <div class="value-fly__cmp value-fly__cmp--before"><span>以前</span>每次重新解释背景、目标和坑。</div>
+                <div class="value-fly__cmp value-fly__cmp--after"><span>现在</span>主 Agent 先唤醒脉络，再继续推进。</div>
+              </div>
+            </div>
+          </div>
+          <p class="pull pull--soft reveal" data-delay="2" data-build-step="2">
+            模型决定这一刻有多聪明；记忆和协议决定<b>多年以后还剩下什么</b>。
+          </p>
+        </div>
+      </section>
+
+      <!-- P9 双引擎成长蓝图：两条泳道、四个阶段 -->
+      <section class="slide" id="p9">
+        <div class="slide__inner slide__inner--wide">
+          <p class="eyebrow">CHAPTER II · 09 &nbsp;/&nbsp; TWO-ENGINE EVOLUTION BLUEPRINT</p>
+          <h2 class="reveal">双引擎成长蓝图：现在在哪里，下一步去哪里</h2>
+          <p class="lead reveal" data-delay="1">
+            记忆与编排不是两张孤立的路线图，而是同一套项目章程的两条成长泳道：一期已经运行，后续逐期增强。
+          </p>
+          <div class="bp">
+            <div class="bp__legend">
+              <span><span class="dot dot--solid"></span>当前已验证</span>
+              <span><span class="dot dot--dash"></span>规划路线</span>
+              <button class="bp__build" id="bpBuild" type="button">▶ 逐步展开</button>
+            </div>
+            <div class="bp__grid" id="bpGrid">
+              <!-- 四列由 JS 注入 -->
+            </div>
+            <div class="bp__rails">
+              <span class="bp__railtag">贯穿四期的三道护栏</span>
+              <span class="rail-guard">当前证据高于历史记忆</span>
+              <span class="rail-guard">项目隔离 · 显式晋升</span>
+              <span class="rail-guard">人类最终授权</span>
+            </div>
+            <p class="bp__refs">
+              理论参考：<a href="https://arxiv.org/abs/2309.02427" target="_blank" rel="noopener">CoALA</a> ·
+              <a href="https://www.anthropic.com/engineering/multi-agent-research-system" target="_blank" rel="noopener">Anthropic Orchestrator–Worker</a> ·
+              <a href="https://www.anthropic.com/engineering/contextual-retrieval" target="_blank" rel="noopener">Contextual Retrieval</a> ·
+              <a href="https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents" target="_blank" rel="noopener">Long-running Agents</a> ·
+              <a href="https://www.anthropic.com/engineering/managed-agents" target="_blank" rel="noopener">Managed Agents</a> ·
+              <a href="https://docs.langchain.com/oss/python/langgraph/persistence" target="_blank" rel="noopener">LangGraph Persistence</a> ·
+              <a href="https://openai.com/index/chatgpt-memory-dreaming/" target="_blank" rel="noopener">OpenAI Dreaming</a>
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- P10 收束 -->
+      <section class="slide slide--closing" id="p10">
+        <div class="slide__inner">
+          <p class="eyebrow">CHAPTER II · 10 &nbsp;/&nbsp; FROM TASKS TO PROJECTS</p>
+          <h2 class="reveal">从完成任务，到持续完成项目</h2>
+          <div class="closer closer--center">
+            <p class="closer__line reveal" data-delay="2">模型会变，工具会换，Skill 会淘汰。</p>
+            <p class="closer__line reveal" data-delay="4">经过验证的记忆、协作关系与项目脉络，可以持续积累。</p>
+            <p class="closer__line closer__line--hero reveal" data-delay="6">每一次合作，都成为下一次合作的起点。</p>
+          </div>
+          <div class="signoff reveal" data-delay="7">
+            <strong>Human-Governed Evolution</strong>
+            <span>一套由人掌握方向、能够持续成长的项目系统</span>
+            <a class="signoff__repo" href="https://github.com/candycong2001-ui/agent-project-playbook" target="_blank" rel="noopener">github.com/candycong2001-ui/agent-project-playbook</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- 演讲模式控制条 -->
+    <div class="deck-ctrl" id="deckCtrl" hidden>
+      <button id="deckPrev" aria-label="上一页">‹</button>
+      <span id="deckNum">1 / 10</span>
+      <button id="deckNext" aria-label="下一页">›</button>
+    </div>
+
+    <script src="./script.js"></script>
+  </body>
+</html>
