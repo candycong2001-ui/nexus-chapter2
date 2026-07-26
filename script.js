@@ -203,7 +203,6 @@ const ValueFly = (function () {
 const P9 = (function () {
   const grid = document.getElementById("bpGrid");
   if (!grid) return null;
-  const buildBtn = document.getElementById("bpBuild");
 
   const phases = [
     { rn: "第一期 · 结构化", done: true, mem: "范围、类型、可信状态、载体分工与项目隔离", orch: "Manager 模式、两级路由、垂直切片、模型能力分层与主 Agent 验收", proof: "新对话能恢复脉络；每轮交付可独立验收" },
@@ -215,9 +214,9 @@ const P9 = (function () {
   const cols = document.createElement("div");
   cols.className = "bp__cols";
   grid.appendChild(cols);
-  const colEls = phases.map((p) => {
+  phases.forEach((p) => {
     const el = document.createElement("div");
-    el.className = "bp__phase" + (p.done ? " bp__phase--done lit" : "");
+    el.className = "bp__phase lit" + (p.done ? " bp__phase--done" : "");
     const tag = p.done
       ? '<span class="bp__tag bp__tag--done">✓ 已验证</span>'
       : '<span class="bp__tag bp__tag--route">路线</span>';
@@ -227,36 +226,8 @@ const P9 = (function () {
       `<div class="bp__cell bp__cell--orch"><span>编排引擎</span><b>${p.orch}</b></div>` +
       `<div class="bp__cell bp__cell--proof"><span>过闸证据</span><b>${p.proof}</b></div>`;
     cols.appendChild(el);
-    return el;
   });
-
-  // 重置到仅 Phase I 点亮(供演讲模式进入时用)
-  function resetCols() {
-    colEls.forEach((el, i) => { if (i > 0) el.classList.remove("lit"); });
-  }
-  // 手动逐列:litCol(1..3);Phase I 初始已亮
-  function litCol(i) {
-    if (i < 1 || i > 3) return;
-    colEls[i].classList.add("lit");
-    if (i === 3) {
-      cols.animate(
-        [{ transform: "scale(1)" }, { transform: "scale(1.015)" }, { transform: "scale(1)" }],
-        { duration: 900, easing: "ease-out" }
-      );
-    }
-  }
-  let autoDone = false;
-  function autoRun() {
-    if (autoDone) return;
-    autoDone = true;
-    if (buildBtn) buildBtn.disabled = true;
-    [1, 2, 3].forEach((idx, k) => setTimeout(() => {
-      if (!inDeck()) litCol(idx);
-    }, k * 800 + 300));
-  }
-  // 普通滚动模式:按钮点击 + 进入视口自动建成
-  if (buildBtn) buildBtn.addEventListener("click", () => { if (!inDeck()) autoRun(); });
-  return { litCol, autoRun, resetCols, buildBtn };
+  return {};
 })();
 
 /* ---------- 非 deck 模式:各页分步动画用 IO 自动触发 ---------- */
@@ -278,7 +249,6 @@ if (P4) observeAuto("heroWheel", P4.autoRun, 0.4);
 if (P6) observeAuto("orchWorker", () => setTimeout(() => {
   if (!inDeck()) P6.fadeWorker();
 }, 1200), 0.4);
-if (P9) observeAuto("bpGrid", P9.autoRun, 0.45);
 
 /* ---------- P5/P6 小型演示：只展示一次最小闭环 ---------- */
 function makeDemo({ button, log, steps, doneText, onStep, onDone }) {
@@ -383,10 +353,9 @@ const OrchDemo = makeDemo({
     slide.querySelectorAll("[data-build-step]").forEach((el) => set.add(+el.getAttribute("data-build-step")));
     return [...set].sort((a, b) => a - b);
   }
-  // 每页最大 build 数(P9 特殊:蓝图三列 = 额外 3 步)
+  // 每页最大 build 数
   function maxStepOf(i) {
     const slide = slides[i];
-    if (slide.id === "p9") return 3; // Phase II/III/IV 三步(Phase I 初始已亮)
     const steps = buildStepsOf(slide);
     return steps.length ? steps[steps.length - 1] : 0;
   }
@@ -415,7 +384,6 @@ const OrchDemo = makeDemo({
     if (id === "p3" && P3) { for (let k = 1; k <= s; k++) P3.litStep(k); }
     else if (id === "p4" && P4 && s >= 1) { P4.litAll(true); }
     else if (id === "p6" && P6 && s >= 3) { P6.fadeWorker(); }
-    else if (id === "p9" && P9 && s >= 1) { for (let k = 1; k <= s; k++) P9.litCol(k); } // 累计点亮 Phase II/III/IV
   }
 
   function show(i) {
@@ -432,7 +400,6 @@ const OrchDemo = makeDemo({
     if (slide.id === "p6") slide.querySelectorAll(".orch__node--worker").forEach((el) => el.classList.remove("fade", "ready"));
     if (slide.id === "p6" && OrchDemo) OrchDemo.reset();
     if (slide.id === "p8" && ValueFly) ValueFly.reset();
-    if (slide.id === "p9" && P9) P9.resetCols();
     slide.scrollTop = 0;
     applyStep(idx, 0);
     updateCounter();
