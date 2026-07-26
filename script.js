@@ -136,10 +136,10 @@ const P9 = (function () {
   const buildBtn = document.getElementById("bpBuild");
 
   const phases = [
-    { rn: "第一期 · 结构化", done: true, mem: "范围、类型、可信状态、载体分工与项目隔离", orch: "Manager 模式、两级路由、垂直切片、能力分层与主 Agent 验收", proof: "新对话能恢复项目上下文" },
-    { rn: "第二期 · 可检索、可路由", done: false, mem: "有界冷热记忆、上下文增强混合检索、来源与可信度过滤", orch: "机器可读问题单、能力目录、风险成本策略", proof: "少读无关内容，正确召回并选对角色" },
-    { rn: "第三期 · 可关联、可续跑", done: false, mem: "原子记忆、关联 / 冲突 / 来源链与过期管理", orch: "持久任务图、检查点、暂停恢复与失败重规划", proof: "长任务跨会话继续，不重复成功步骤" },
-    { rn: "第四期 · 可学习、受治理", done: false, mem: "聚类、去重、陈旧检测与 Dream 式候选整理", orch: "基于评估的路线建议、模型选择与验收策略", proof: "候选可审阅、可拒绝、可回滚" },
+    { rn: "第一期 · 结构化", done: true, mem: "范围、类型、可信状态、载体分工与项目隔离", orch: "Manager 模式、两级路由、垂直切片、模型能力分层与主 Agent 验收", proof: "新对话能恢复脉络；每轮交付可独立验收" },
+    { rn: "第二期 · 可观测、可评估", done: false, mem: "有界冷热记忆、混合检索、来源与可信度过滤", orch: "机器可读问题单与能力目录；路由追踪、质量 / 成本 / 失败评估", proof: "知道为何这样路由，并能用证据比较结果" },
+    { rn: "第三期 · 可恢复、可续跑", done: false, mem: "原子记忆、关联 / 冲突 / 来源链与过期管理", orch: "持久任务图、检查点、人工暂停恢复、幂等执行与失败重规划", proof: "长任务跨会话继续，不重复成功步骤" },
+    { rn: "第四期 · 记忆驱动、受治理", done: false, mem: "聚类、去重、陈旧检测与 Dream 式候选整理", orch: "记忆辅助意图预测、风险 / 能力选模、评估驱动的路由候选", proof: "候选可解释、可审阅、可拒绝、可回滚" },
   ];
 
   const cols = document.createElement("div");
@@ -153,7 +153,6 @@ const P9 = (function () {
       : '<span class="bp__tag bp__tag--route">路线</span>';
     el.innerHTML =
       `<div class="bp__ph"><b>${p.rn}</b>${tag}</div>` +
-      (p.done ? '<span class="bp__here">YOU ARE HERE</span>' : "") +
       `<div class="bp__cell bp__cell--mem"><span>记忆引擎</span><b>${p.mem}</b></div>` +
       `<div class="bp__cell bp__cell--orch"><span>编排引擎</span><b>${p.orch}</b></div>` +
       `<div class="bp__cell bp__cell--proof"><span>过闸证据</span><b>${p.proof}</b></div>`;
