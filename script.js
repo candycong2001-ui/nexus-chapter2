@@ -85,10 +85,36 @@ const ValueFly = (function () {
   const hint = document.getElementById("valueFlyHint");
   const nodes = root ? [...root.querySelectorAll("[data-value-node]")] : [];
   const rows = root ? [...root.querySelectorAll("[data-value-step]")] : [];
+  const runner = root ? root.querySelector(".value-fly__runner") : null;
   if (!root || !button) return null;
-  let timers = [];
+  const labels = [
+    "理解：把一句模糊感受收敛成本轮问题。",
+    "调用记忆：唤醒已确认的视觉原则与历史反馈。",
+    "编排：形成体验切片、验收标准并分配能力。",
+    "执行：组织页面调查、实现与视觉验证。",
+    "验证：用测试、截图和用户确认共同验收。",
+    "沉淀记忆：保存经过验证的项目规则。",
+    "反哺理解：下一轮不再从零开始。",
+  ];
+  const startDelay = 160;
+  const stepDuration = 1200;
+  const moveDuration = 450;
+  const finishHold = 420;
+  const totalDuration = startDelay + (labels.length - 1) * stepDuration + finishHold;
+  let frame = 0;
   let running = false;
-  function clearTimers() { timers.forEach(clearTimeout); timers = []; }
+  let paused = false;
+  let elapsed = 0;
+  let lastTime = 0;
+  let currentStep = -1;
+  function renderProgress(degrees) {
+    const angle = degrees * Math.PI / 180;
+    root.style.setProperty("--fly-progress", degrees + "deg");
+    if (runner) {
+      runner.style.left = (50 + 48 * Math.sin(angle)) + "%";
+      runner.style.top = (50 - 50 * Math.cos(angle)) + "%";
+    }
+  }
   function setStep(index) {
     // 六个环节顺时针推进；最后一步由“沉淀记忆”回到“理解”。
     const nodeMap = [0, 1, 2, 3, 4, 5, 0];
@@ -101,38 +127,73 @@ const ValueFly = (function () {
     root.classList.toggle("is-running", index >= 0);
     root.classList.toggle("is-returning", index === 6);
     root.dataset.flyStep = index < 0 ? "idle" : String(index);
-    const progress = index < 0 ? 0 : Math.min(index, 6) * 60;
-    root.style.setProperty("--fly-progress", progress + "deg");
+    if (index >= 0 && hint) hint.textContent = labels[index];
+  }
+  function renderTimeline(time) {
+    if (time < startDelay) return;
+    const activeTime = time - startDelay;
+    const settledStep = Math.min(labels.length - 1, Math.floor(activeTime / stepDuration));
+    if (currentStep !== settledStep) {
+      currentStep = settledStep;
+      setStep(currentStep);
+    }
+    const phase = activeTime % stepDuration;
+    const moveStart = stepDuration - moveDuration;
+    const transitionProgress = settledStep >= labels.length - 1
+      ? 0
+      : Math.max(0, Math.min(1, (phase - moveStart) / moveDuration));
+    renderProgress((settledStep + transitionProgress) * 60);
+  }
+  function finish() {
+    renderProgress(360);
+    root.classList.add("is-done");
+    root.classList.remove("is-paused");
+    running = false;
+    paused = false;
+    button.textContent = "↺ 再运行一次";
+    if (hint) hint.textContent = "✓ 一轮协作完成；经过验证的记忆已经回到下一轮理解。";
+  }
+  function tick(now) {
+    if (!running || paused) return;
+    if (!lastTime) lastTime = now;
+    elapsed += now - lastTime;
+    lastTime = now;
+    renderTimeline(elapsed);
+    if (elapsed >= totalDuration) finish();
+    else frame = requestAnimationFrame(tick);
   }
   function reset() {
-    clearTimers(); running = false; button.disabled = false;
-    root.classList.remove("is-running", "is-returning", "is-done");
+    cancelAnimationFrame(frame);
+    running = false; paused = false; elapsed = 0; lastTime = 0; currentStep = -1;
+    root.classList.remove("is-running", "is-returning", "is-done", "is-paused");
     setStep(-1);
+    renderProgress(0);
     button.textContent = "▶ 运行一轮协作";
     if (hint) hint.textContent = "点击后，沿圆环依次看完六个环节和一次反哺。";
   }
+  function togglePause() {
+    paused = !paused;
+    root.classList.toggle("is-paused", paused);
+    if (paused) {
+      cancelAnimationFrame(frame);
+      button.textContent = "▶ 继续";
+      if (hint) hint.textContent = "⏸ 已暂停 · " + (labels[currentStep] || "准备开始");
+    } else {
+      lastTime = 0;
+      button.textContent = "⏸ 暂停";
+      if (hint && currentStep >= 0) hint.textContent = labels[currentStep];
+      frame = requestAnimationFrame(tick);
+    }
+  }
   function run() {
-    if (running) return;
+    if (running) {
+      togglePause();
+      return;
+    }
     if (root.classList.contains("is-done")) reset();
-    running = true; button.disabled = true; root.classList.remove("is-done");
-    const labels = [
-      "理解：把一句模糊感受收敛成本轮问题。",
-      "调用记忆：唤醒已确认的视觉原则与历史反馈。",
-      "编排：形成体验切片、验收标准并分配能力。",
-      "执行：组织页面调查、实现与视觉验证。",
-      "验证：用测试、截图和用户确认共同验收。",
-      "沉淀记忆：保存经过验证的项目规则。",
-      "反哺理解：下一轮不再从零开始。",
-    ];
-    const stepDuration = 1200;
-    labels.forEach((text, i) => timers.push(setTimeout(() => {
-      setStep(i); if (hint) hint.textContent = text;
-    }, i * stepDuration + 160)));
-    timers.push(setTimeout(() => {
-      root.classList.add("is-done"); running = false; button.disabled = false;
-      button.textContent = "↺ 再运行一次";
-      if (hint) hint.textContent = "✓ 一轮协作完成；经过验证的记忆已经回到下一轮理解。";
-    }, labels.length * stepDuration + 420));
+    running = true;
+    button.textContent = "⏸ 暂停";
+    frame = requestAnimationFrame(tick);
   }
   button.addEventListener("click", run);
   return { run, reset };
