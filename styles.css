@@ -530,13 +530,29 @@ button { font: inherit; cursor: pointer; }
 .value-fly__ring::after { bottom: 12%; left: -6px; border-width: 6px 12px 6px 0; border-color: transparent var(--green) transparent transparent; transform: rotate(35deg); }
 .value-fly.is-running .value-fly__ring { border-color: rgba(16,185,129,0.55); box-shadow: 0 0 30px rgba(16,185,129,0.08); }
 .value-fly__pulse {
-  position: absolute; inset: -3px; padding: 3px; border-radius: 50%; opacity: 0;
-  background: conic-gradient(from -90deg, var(--cyan) 0 var(--fly-progress), rgba(34,211,238,0.1) var(--fly-progress) 360deg);
+  position: absolute; inset: -5px; padding: 5px; border-radius: 50%; opacity: 0;
+  background: conic-gradient(from -90deg, #67e8f9 0 var(--fly-progress), rgba(34,211,238,0.06) var(--fly-progress) 360deg);
   -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
   -webkit-mask-composite: xor; mask-composite: exclude;
-  transition: --fly-progress .75s ease, opacity .3s ease;
+  filter: drop-shadow(0 0 7px rgba(34,211,238,0.72));
+  transition: --fly-progress .45s linear, opacity .2s ease;
 }
 .value-fly.is-running .value-fly__pulse { opacity: 1; }
+.value-fly__runner {
+  position: absolute; left: 50%; top: 0; z-index: 2; width: 12px; height: 12px;
+  border: 2px solid #ecfeff; border-radius: 50%; background: var(--cyan); opacity: 0;
+  box-shadow: 0 0 0 4px rgba(34,211,238,0.2), 0 0 22px 8px rgba(34,211,238,0.68);
+  transform: translate(-50%, -50%);
+  transition: left .45s linear, top .45s linear, opacity .2s ease;
+}
+.value-fly.is-running .value-fly__runner { opacity: 1; }
+.value-fly[data-fly-step="0"] .value-fly__runner,
+.value-fly[data-fly-step="6"] .value-fly__runner { left: 50%; top: 0; }
+.value-fly[data-fly-step="1"] .value-fly__runner { left: 98%; top: 25%; }
+.value-fly[data-fly-step="2"] .value-fly__runner { left: 98%; top: 75%; }
+.value-fly[data-fly-step="3"] .value-fly__runner { left: 50%; top: 100%; }
+.value-fly[data-fly-step="4"] .value-fly__runner { left: 2%; top: 75%; }
+.value-fly[data-fly-step="5"] .value-fly__runner { left: 2%; top: 25%; }
 .value-fly__center { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); display: grid; place-content: center; gap: 2px; width: 148px; height: 86px; text-align: center; border: 1px solid rgba(99,102,241,0.55); border-radius: 50%; background: rgba(15,23,42,0.92); box-shadow: 0 0 28px rgba(99,102,241,0.16); }
 .value-fly__center strong { color: #fff; font-size: 0.95rem; }
 .value-fly__center small { color: var(--muted); font-size: 0.66rem; }
