@@ -214,9 +214,9 @@ const P9 = (function () {
   const cols = document.createElement("div");
   cols.className = "bp__cols";
   grid.appendChild(cols);
-  phases.forEach((p) => {
+  const colEls = phases.map((p) => {
     const el = document.createElement("div");
-    el.className = "bp__phase lit" + (p.done ? " bp__phase--done" : "");
+    el.className = "bp__phase" + (p.done ? " bp__phase--done lit" : "");
     const tag = p.done
       ? '<span class="bp__tag bp__tag--done">✓ 已验证</span>'
       : '<span class="bp__tag bp__tag--route">路线</span>';
@@ -226,8 +226,31 @@ const P9 = (function () {
       `<div class="bp__cell bp__cell--orch"><span>编排引擎</span><b>${p.orch}</b></div>` +
       `<div class="bp__cell bp__cell--proof"><span>过闸证据</span><b>${p.proof}</b></div>`;
     cols.appendChild(el);
+    return el;
   });
-  return {};
+
+  function resetCols() {
+    colEls.forEach((el, i) => { if (i > 0) el.classList.remove("lit"); });
+  }
+  function litCol(i) {
+    if (i < 1 || i > 3) return;
+    colEls[i].classList.add("lit");
+    if (i === 3) {
+      cols.animate(
+        [{ transform: "scale(1)" }, { transform: "scale(1.015)" }, { transform: "scale(1)" }],
+        { duration: 900, easing: "ease-out" }
+      );
+    }
+  }
+  let autoDone = false;
+  function autoRun() {
+    if (autoDone) return;
+    autoDone = true;
+    [1, 2, 3].forEach((idx, k) => setTimeout(() => {
+      if (!inDeck()) litCol(idx);
+    }, k * 800 + 300));
+  }
+  return { litCol, autoRun, resetCols };
 })();
 
 /* ---------- 非 deck 模式:各页分步动画用 IO 自动触发 ---------- */
@@ -249,6 +272,7 @@ if (P4) observeAuto("heroWheel", P4.autoRun, 0.4);
 if (P6) observeAuto("orchWorker", () => setTimeout(() => {
   if (!inDeck()) P6.fadeWorker();
 }, 1200), 0.4);
+if (P9) observeAuto("bpGrid", P9.autoRun, 0.45);
 
 /* ---------- P5/P6 小型演示：只展示一次最小闭环 ---------- */
 function makeDemo({ button, log, steps, doneText, onStep, onDone }) {
@@ -353,9 +377,10 @@ const OrchDemo = makeDemo({
     slide.querySelectorAll("[data-build-step]").forEach((el) => set.add(+el.getAttribute("data-build-step")));
     return [...set].sort((a, b) => a - b);
   }
-  // 每页最大 build 数
+  // 每页最大 build 数(P9 特殊:蓝图三列 = 额外 3 步)
   function maxStepOf(i) {
     const slide = slides[i];
+    if (slide.id === "p9") return 3;
     const steps = buildStepsOf(slide);
     return steps.length ? steps[steps.length - 1] : 0;
   }
@@ -384,6 +409,7 @@ const OrchDemo = makeDemo({
     if (id === "p3" && P3) { for (let k = 1; k <= s; k++) P3.litStep(k); }
     else if (id === "p4" && P4 && s >= 1) { P4.litAll(true); }
     else if (id === "p6" && P6 && s >= 3) { P6.fadeWorker(); }
+    else if (id === "p9" && P9 && s >= 1) { for (let k = 1; k <= s; k++) P9.litCol(k); }
   }
 
   function show(i) {
@@ -400,6 +426,7 @@ const OrchDemo = makeDemo({
     if (slide.id === "p6") slide.querySelectorAll(".orch__node--worker").forEach((el) => el.classList.remove("fade", "ready"));
     if (slide.id === "p6" && OrchDemo) OrchDemo.reset();
     if (slide.id === "p8" && ValueFly) ValueFly.reset();
+    if (slide.id === "p9" && P9) P9.resetCols();
     slide.scrollTop = 0;
     applyStep(idx, 0);
     updateCounter();
