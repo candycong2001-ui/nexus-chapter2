@@ -90,40 +90,48 @@ const ValueFly = (function () {
   let running = false;
   function clearTimers() { timers.forEach(clearTimeout); timers = []; }
   function setStep(index) {
-    // 第 0 步是飞轮外部的“需求输入”，从第 1 步开始才进入五个环节。
-    const nodeMap = [null, 4, 1, 2, 3, 4];
+    // 六个环节顺时针推进；最后一步由“沉淀记忆”回到“理解”。
+    const nodeMap = [0, 1, 2, 3, 4, 5, 0];
     const activeNode = nodeMap[index];
-    nodes.forEach((n, i) => n.classList.toggle("active", activeNode === i));
+    nodes.forEach((n, i) => {
+      n.classList.toggle("active", activeNode === i);
+      n.classList.toggle("visited", index === 6 || (index >= 0 && i < activeNode));
+    });
     rows.forEach((r, i) => r.classList.toggle("in", i <= index));
     root.classList.toggle("is-running", index >= 0);
-    root.classList.toggle("is-input", index === 0);
+    root.classList.toggle("is-returning", index === 6);
+    const progress = index < 0 ? 0 : Math.min(index, 6) * 60;
+    root.style.setProperty("--fly-progress", progress + "deg");
   }
   function reset() {
     clearTimers(); running = false; button.disabled = false;
-    root.classList.remove("is-running", "is-input", "is-done");
+    root.classList.remove("is-running", "is-returning", "is-done");
     setStep(-1);
-    button.textContent = "▶ 投入一次模糊需求";
-    if (hint) hint.textContent = "点击后看一条模糊感受，如何变成下一次少问一遍。";
+    button.textContent = "▶ 运行一轮协作";
+    if (hint) hint.textContent = "点击后，沿圆环依次看完六个环节和一次反哺。";
   }
   function run() {
     if (running) return;
+    if (root.classList.contains("is-done")) reset();
     running = true; button.disabled = true; root.classList.remove("is-done");
     const labels = [
-      "先接住一句模糊感受，形成这轮要处理的需求。",
-      "唤醒当前项目已经确认的视觉原则与历史反馈。",
-      "把感受判断成体验切片，交给合适的能力层。",
-      "组织页面调查、实现与视觉验证。",
-      "用测试、截图和用户确认共同验收。",
-      "沉淀经过验证的项目规则，带回下一轮理解。",
+      "理解：把一句模糊感受收敛成本轮问题。",
+      "调用记忆：唤醒已确认的视觉原则与历史反馈。",
+      "编排：形成体验切片、验收标准并分配能力。",
+      "执行：组织页面调查、实现与视觉验证。",
+      "验证：用测试、截图和用户确认共同验收。",
+      "沉淀记忆：保存经过验证的项目规则。",
+      "反哺理解：下一轮不再从零开始。",
     ];
+    const stepDuration = 1200;
     labels.forEach((text, i) => timers.push(setTimeout(() => {
       setStep(i); if (hint) hint.textContent = text;
-    }, i * 650 + 120)));
+    }, i * stepDuration + 160)));
     timers.push(setTimeout(() => {
       root.classList.add("is-done"); running = false; button.disabled = false;
-      button.textContent = "↺ 再投入一次";
-      if (hint) hint.textContent = "✓ 飞轮转完一圈；下一轮少问你一遍。";
-    }, labels.length * 650 + 260));
+      button.textContent = "↺ 再运行一次";
+      if (hint) hint.textContent = "✓ 一轮协作完成；经过验证的记忆已经回到下一轮理解。";
+    }, labels.length * stepDuration + 420));
   }
   button.addEventListener("click", run);
   return { run, reset };
