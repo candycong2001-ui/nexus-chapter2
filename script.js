@@ -100,6 +100,7 @@ const ValueFly = (function () {
     rows.forEach((r, i) => r.classList.toggle("in", i <= index));
     root.classList.toggle("is-running", index >= 0);
     root.classList.toggle("is-returning", index === 6);
+    root.dataset.flyStep = index < 0 ? "idle" : String(index);
     const progress = index < 0 ? 0 : Math.min(index, 6) * 60;
     root.style.setProperty("--fly-progress", progress + "deg");
   }
