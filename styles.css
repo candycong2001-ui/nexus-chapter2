@@ -1,3 +1,9 @@
+@property --fly-progress {
+  syntax: "<angle>";
+  inherits: true;
+  initial-value: 0deg;
+}
+
 :root {
   color-scheme: dark;
   --bg: #020617;
@@ -516,25 +522,33 @@ button { font: inherit; cursor: pointer; }
 .complement-arrow--bottom { left: 50%; bottom: 16%; transform: translateX(-50%); color: var(--green); }
 
 /* ---------- P8 价值飞轮示例 ---------- */
-.value-fly { display: grid; grid-template-columns: minmax(360px, 500px) 1fr; gap: 34px; align-items: center; margin: 6px 0 16px; }
+.value-fly { --fly-progress: 0deg; display: grid; grid-template-columns: minmax(360px, 500px) 1fr; gap: 34px; align-items: center; margin: 6px 0 16px; }
 .value-fly__stage { position: relative; width: min(460px, 100%); height: 350px; margin: auto; }
 .value-fly__ring { position: absolute; inset: 28px 42px; border: 2px dashed rgba(148,163,184,0.3); border-radius: 50%; background: radial-gradient(circle, rgba(34,211,238,0.07), transparent 62%); transition: border-color .45s, box-shadow .45s; }
 .value-fly__ring::before, .value-fly__ring::after { content: ""; position: absolute; width: 0; height: 0; border-style: solid; }
 .value-fly__ring::before { top: 13%; right: -6px; border-width: 6px 0 6px 12px; border-color: transparent transparent transparent var(--cyan); transform: rotate(35deg); }
 .value-fly__ring::after { bottom: 12%; left: -6px; border-width: 6px 12px 6px 0; border-color: transparent var(--green) transparent transparent; transform: rotate(35deg); }
 .value-fly.is-running .value-fly__ring { border-color: rgba(16,185,129,0.55); box-shadow: 0 0 30px rgba(16,185,129,0.08); }
-.value-fly__pulse { position: absolute; inset: 3px; border: 3px solid rgba(34,211,238,0.22); border-radius: 50%; opacity: 0; }
-.value-fly.is-running .value-fly__pulse { opacity: 1; animation: wheel-breathe 2.5s ease-in-out infinite; }
+.value-fly__pulse {
+  position: absolute; inset: -3px; padding: 3px; border-radius: 50%; opacity: 0;
+  background: conic-gradient(from -90deg, var(--cyan) 0 var(--fly-progress), rgba(34,211,238,0.1) var(--fly-progress) 360deg);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor; mask-composite: exclude;
+  transition: --fly-progress .75s ease, opacity .3s ease;
+}
+.value-fly.is-running .value-fly__pulse { opacity: 1; }
 .value-fly__center { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); display: grid; place-content: center; gap: 2px; width: 148px; height: 86px; text-align: center; border: 1px solid rgba(99,102,241,0.55); border-radius: 50%; background: rgba(15,23,42,0.92); box-shadow: 0 0 28px rgba(99,102,241,0.16); }
 .value-fly__center strong { color: #fff; font-size: 0.95rem; }
 .value-fly__center small { color: var(--muted); font-size: 0.66rem; }
-.value-fly__node { position: absolute; display: grid; place-items: center; min-width: 78px; min-height: 50px; padding: 7px 10px; border: 1px solid var(--line); border-radius: 12px; color: var(--soft); background: rgba(15,23,42,0.88); opacity: .52; transform: translate(-50%, -50%) scale(.95); transition: opacity .35s, transform .35s, border-color .35s, box-shadow .35s; }
+.value-fly__node { position: absolute; display: grid; place-items: center; min-width: 78px; min-height: 50px; padding: 7px 10px; border: 1px solid var(--line); border-radius: 12px; color: var(--soft); white-space: nowrap; background: rgba(15,23,42,0.88); opacity: .42; transform: translate(-50%, -50%) scale(.95); transition: opacity .45s, transform .45s, border-color .45s, box-shadow .45s, background .45s; }
+.value-fly__node.visited { opacity: .78; color: #dbeafe; border-color: rgba(16,185,129,0.42); background: rgba(16,185,129,0.07); }
 .value-fly__node.active { opacity: 1; transform: translate(-50%, -50%) scale(1.08); color: #fff; border-color: rgba(34,211,238,0.75); box-shadow: 0 0 20px rgba(34,211,238,0.18); }
 .value-fly__node--1 { left: 50%; top: 4%; }
-.value-fly__node--2 { left: 91%; top: 31%; border-color: rgba(245,158,11,0.42); }
-.value-fly__node--3 { left: 76%; top: 88%; }
-.value-fly__node--4 { left: 24%; top: 88%; }
-.value-fly__node--5 { left: 9%; top: 31%; border-color: rgba(34,211,238,0.42); }
+.value-fly__node--2 { left: 88%; top: 26%; border-color: rgba(34,211,238,0.42); }
+.value-fly__node--3 { left: 88%; top: 73%; border-color: rgba(245,158,11,0.42); }
+.value-fly__node--4 { left: 50%; top: 92%; }
+.value-fly__node--5 { left: 12%; top: 73%; }
+.value-fly__node--6 { left: 12%; top: 26%; border-color: rgba(34,211,238,0.42); }
 .value-fly__side { display: grid; gap: 10px; align-content: start; }
 .value-fly__hint { margin: 0; color: var(--muted); }
 .value-fly__log { display: grid; gap: 7px; min-height: 184px; }
@@ -546,6 +560,7 @@ button { font: inherit; cursor: pointer; }
 .value-fly__row--mem b { color: var(--mem); }
 .value-fly__row--orch b { color: var(--orch); }
 .value-fly__row--evidence b { color: var(--green); }
+.value-fly__row--feedback b { color: #c4b5fd; }
 .value-fly__compare { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
 .value-fly__cmp { padding: 10px 12px; border-radius: 11px; font-size: 0.82rem; }
 .value-fly__cmp span { display: block; margin-bottom: 3px; font-size: 0.68rem; letter-spacing: .1em; }
