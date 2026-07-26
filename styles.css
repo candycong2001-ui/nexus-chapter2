@@ -535,7 +535,7 @@ button { font: inherit; cursor: pointer; }
   -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
   -webkit-mask-composite: xor; mask-composite: exclude;
   filter: drop-shadow(0 0 7px rgba(34,211,238,0.72));
-  transition: --fly-progress .45s linear, opacity .2s ease;
+  transition: opacity .2s ease;
 }
 .value-fly.is-running .value-fly__pulse { opacity: 1; }
 .value-fly__runner {
@@ -543,16 +543,13 @@ button { font: inherit; cursor: pointer; }
   border: 2px solid #ecfeff; border-radius: 50%; background: var(--cyan); opacity: 0;
   box-shadow: 0 0 0 4px rgba(34,211,238,0.2), 0 0 22px 8px rgba(34,211,238,0.68);
   transform: translate(-50%, -50%);
-  transition: left .45s linear, top .45s linear, opacity .2s ease;
+  transition: opacity .2s ease;
 }
 .value-fly.is-running .value-fly__runner { opacity: 1; }
-.value-fly[data-fly-step="0"] .value-fly__runner,
-.value-fly[data-fly-step="6"] .value-fly__runner { left: 50%; top: 0; }
-.value-fly[data-fly-step="1"] .value-fly__runner { left: 98%; top: 25%; }
-.value-fly[data-fly-step="2"] .value-fly__runner { left: 98%; top: 75%; }
-.value-fly[data-fly-step="3"] .value-fly__runner { left: 50%; top: 100%; }
-.value-fly[data-fly-step="4"] .value-fly__runner { left: 2%; top: 75%; }
-.value-fly[data-fly-step="5"] .value-fly__runner { left: 2%; top: 25%; }
+.value-fly.is-paused .value-fly__runner { animation: fly-pause-pulse 1.1s ease-in-out infinite; }
+@keyframes fly-pause-pulse {
+  50% { box-shadow: 0 0 0 7px rgba(34,211,238,0.12), 0 0 14px 5px rgba(34,211,238,0.45); }
+}
 .value-fly__center { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); display: grid; place-content: center; gap: 2px; width: 148px; height: 86px; text-align: center; border: 1px solid rgba(99,102,241,0.55); border-radius: 50%; background: rgba(15,23,42,0.92); box-shadow: 0 0 28px rgba(99,102,241,0.16); }
 .value-fly__center strong { color: #fff; font-size: 0.95rem; }
 .value-fly__center small { color: var(--muted); font-size: 0.66rem; }
