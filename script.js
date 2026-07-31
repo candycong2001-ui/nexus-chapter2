@@ -70,8 +70,8 @@ const P4 = (function () {
   return { litAll, autoRun: () => litAll(false), reset };
 })();
 
-/* ---------- P6 worker 高亮：复杂度在后台，但能力层级可见 ---------- */
-const P6 = (function () {
+/* ---------- P7 Worker 高亮：复杂度在后台，但能力层级可见 ---------- */
+const OrchWorker = (function () {
   const worker = document.getElementById("orchWorker");
   if (!worker) return null;
   function fadeWorker() { worker.classList.add("ready"); }
@@ -199,13 +199,13 @@ const ValueFly = (function () {
   return { run, reset };
 })();
 
-/* ---------- P9 双泳道四阶段蓝图 ---------- */
-const P9 = (function () {
-  const grid = document.getElementById("bpGrid");
+/* ---------- P11 双泳道四阶段蓝图 ---------- */
+const Blueprint = (function () {
+  const grid = document.getElementById("blueprintGrid");
   if (!grid) return null;
 
   const phases = [
-    { rn: "第一期 · 结构化", done: true, mem: "范围、类型、可信状态、载体分工与项目隔离", orch: "Manager 模式、两级路由、垂直切片、模型能力分层与主 Agent 验收", proof: "新对话能恢复脉络；每轮交付可独立验收" },
+    { rn: "第一期 · 结构化", done: true, mem: "范围、类型、可信状态、载体分工与项目隔离", orch: "NO_DELEGATION 价值闸、P0–P3 权限、任务包、主 Agent 验收", proof: "新对话能恢复脉络；代码从独立 worktree 开始，发布仍需运行环境证据" },
     { rn: "第二期 · 可观测、可评估", done: false, mem: "有界冷热记忆、混合检索、来源与可信度过滤", orch: "机器可读问题单与能力目录；路由追踪、质量 / 成本 / 失败评估", proof: "知道为何这样路由，并能用证据比较结果" },
     { rn: "第三期 · 可恢复、可续跑", done: false, mem: "原子记忆、关联 / 冲突 / 来源链与过期管理", orch: "持久任务图、检查点、人工暂停恢复、幂等执行与失败重规划", proof: "长任务跨会话继续，不重复成功步骤" },
     { rn: "第四期 · 记忆驱动、受治理", done: false, mem: "聚类、去重、陈旧检测与 Dream 式候选整理", orch: "记忆辅助意图预测、风险 / 能力选模、评估驱动的路由候选", proof: "候选可解释、可审阅、可拒绝、可回滚" },
@@ -269,12 +269,12 @@ function observeAuto(elId, cb, threshold) {
 }
 if (P3) observeAuto("archStack", P3.autoRun, 0.35);
 if (P4) observeAuto("heroWheel", P4.autoRun, 0.4);
-if (P6) observeAuto("orchWorker", () => setTimeout(() => {
-  if (!inDeck()) P6.fadeWorker();
+if (OrchWorker) observeAuto("orchWorker", () => setTimeout(() => {
+  if (!inDeck()) OrchWorker.fadeWorker();
 }, 1200), 0.4);
-if (P9) observeAuto("bpGrid", P9.autoRun, 0.45);
+if (Blueprint) observeAuto("blueprintGrid", Blueprint.autoRun, 0.45);
 
-/* ---------- P5/P6 小型演示：只展示一次最小闭环 ---------- */
+/* ---------- P6/P7 小型演示：只展示一次最小闭环 ---------- */
 function makeDemo({ button, log, steps, doneText, onStep, onDone }) {
   if (!button || !log) return null;
   let index = -1;
@@ -336,9 +336,9 @@ const OrchDemo = makeDemo({
   button: document.getElementById("orchDemoRun"),
   log: document.getElementById("orchDemoLog"),
   steps: [
-    "① 理解意图：这是体验问题，不先把它误写成 Bug。",
-    "② 形成问题单：目标是层级清晰，验收是 1280×720 无滚动。",
-    "③ 委派：Frontier 主控；Balanced 实现；Fast 做只读扫描。",
+    "① 价值闸：独立、有收益、非阻塞、可验收，先判断是否值得派。",
+    "② 执行配置：明确角色、模型、推理、P0–P3 权限与验收。",
+    "③ 派遣：主 Agent 保留最终决策；Worker 不扩大范围、不继续派遣。",
     "④ 回收证据：代码、测试、截图与运行结果一起返回。",
     "⑤ 主 Agent 审查：接受、退回或调整，最后统一交付。",
   ],
@@ -377,10 +377,10 @@ const OrchDemo = makeDemo({
     slide.querySelectorAll("[data-build-step]").forEach((el) => set.add(+el.getAttribute("data-build-step")));
     return [...set].sort((a, b) => a - b);
   }
-  // 每页最大 build 数(P9 特殊:蓝图三列 = 额外 3 步)
+  // 每页最大 build 数(P11 特殊:蓝图三列 = 额外 3 步)
   function maxStepOf(i) {
     const slide = slides[i];
-    if (slide.id === "p9") return 3;
+    if (slide.id === "p11") return 3;
     const steps = buildStepsOf(slide);
     return steps.length ? steps[steps.length - 1] : 0;
   }
@@ -408,8 +408,8 @@ const OrchDemo = makeDemo({
   function triggerPageAnim(id, s) {
     if (id === "p3" && P3) { for (let k = 1; k <= s; k++) P3.litStep(k); }
     else if (id === "p4" && P4 && s >= 1) { P4.litAll(true); }
-    else if (id === "p6" && P6 && s >= 3) { P6.fadeWorker(); }
-    else if (id === "p9" && P9 && s >= 1) { for (let k = 1; k <= s; k++) P9.litCol(k); }
+    else if (id === "p7" && OrchWorker && s >= 3) { OrchWorker.fadeWorker(); }
+    else if (id === "p11" && Blueprint && s >= 1) { for (let k = 1; k <= s; k++) Blueprint.litCol(k); }
   }
 
   function show(i) {
@@ -422,11 +422,11 @@ const OrchDemo = makeDemo({
     // 清除分步动画的 .lit 残留(普通模式滚动可能已触发),让 deck 从头分步
     if (slide.id === "p3") slide.querySelectorAll(".arch__layer,.arch__charter").forEach((el) => el.classList.remove("lit"));
     if (slide.id === "p4" && P4) P4.reset();
-    if (slide.id === "p5" && MemoryDemo) MemoryDemo.reset();
-    if (slide.id === "p6") slide.querySelectorAll(".orch__node--worker").forEach((el) => el.classList.remove("fade", "ready"));
-    if (slide.id === "p6" && OrchDemo) OrchDemo.reset();
-    if (slide.id === "p8" && ValueFly) ValueFly.reset();
-    if (slide.id === "p9" && P9) P9.resetCols();
+    if (slide.id === "p6" && MemoryDemo) MemoryDemo.reset();
+    if (slide.id === "p7") slide.querySelectorAll(".orch__node--worker").forEach((el) => el.classList.remove("fade", "ready"));
+    if (slide.id === "p7" && OrchDemo) OrchDemo.reset();
+    if (slide.id === "p10" && ValueFly) ValueFly.reset();
+    if (slide.id === "p11" && Blueprint) Blueprint.resetCols();
     slide.scrollTop = 0;
     applyStep(idx, 0);
     updateCounter();
