@@ -508,8 +508,46 @@ button { font: inherit; cursor: pointer; }
 .dual-loop__bridge { display: grid; place-items: center; color: var(--muted); font-size: 0.72rem; writing-mode: vertical-rl; letter-spacing: 0.12em; }
 .dual-loop__feedback { display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 10px; padding: 12px 18px; border: 1px dashed rgba(16,185,129,0.52); border-radius: 12px; color: var(--soft); background: rgba(16,185,129,0.06); font-size: 0.86rem; }
 .dual-loop__feedback b { color: var(--green); font-size: 1.05rem; }
+.dual-loop__safety { display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 10px; padding: 10px 16px; border: 1px solid rgba(245,158,11,0.42); border-radius: 12px; color: #ffedb0; background: rgba(245,158,11,0.075); font-size: 0.8rem; }
+.dual-loop__safety span { color: var(--orch); font-weight: 700; }
+.dual-loop__safety b { color: var(--soft); font-weight: 500; }
 .govern { margin: 0; text-align: center; color: var(--soft); font-size: 1rem;
   border-top: 1px solid var(--line); padding-top: 18px; }
+
+/* ---------- P5 项目安全与发布护栏 ---------- */
+.slide--safety { background: radial-gradient(720px 420px at 50% 36%, rgba(245,158,11,0.075), transparent 72%); }
+.safety-guard-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 11px; margin: 12px 0; }
+.safety-guard { display: grid; align-content: start; gap: 6px; min-height: 174px; padding: 14px 15px; border: 1px solid var(--line); border-radius: 14px; background: rgba(15,23,42,0.56); }
+.safety-guard > span { color: var(--muted); font-size: 0.7rem; letter-spacing: 0.08em; }
+.safety-guard > b { color: #fff; font-size: 0.94rem; line-height: 1.35; }
+.safety-guard > em { color: var(--soft); font-size: 0.76rem; font-style: normal; line-height: 1.5; }
+.safety-guard code, .bp__rails code { color: #fde68a; font-family: inherit; font-size: inherit; }
+.safety-guard--start { border-color: rgba(34,211,238,0.48); background: linear-gradient(180deg, rgba(34,211,238,0.09), rgba(15,23,42,0.56)); }
+.safety-guard--runtime { border-color: rgba(99,102,241,0.48); }
+.safety-guard--release { border-color: rgba(245,158,11,0.55); background: linear-gradient(180deg, rgba(245,158,11,0.09), rgba(15,23,42,0.56)); }
+.safety-guard--recover { border-color: rgba(16,185,129,0.48); }
+.safety-checkpoints { display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 9px; margin: 11px 0; padding: 11px 14px; border: 1px dashed rgba(245,158,11,0.46); border-radius: 12px; background: rgba(245,158,11,0.045); }
+.safety-checkpoints span { color: var(--soft); font-size: 0.8rem; }
+.safety-checkpoints b { color: var(--orch); }
+.safety-warning { max-width: none; text-align: center; }
+
+/* ---------- P8 派遣运行时与回收 ---------- */
+.slide--runtime { background: radial-gradient(680px 390px at 50% 42%, rgba(99,102,241,0.07), transparent 72%); }
+.runtime-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 11px; margin: 12px 0; }
+.runtime-card { display: grid; align-content: start; gap: 6px; min-height: 160px; padding: 14px 15px; border: 1px solid var(--line); border-radius: 14px; background: rgba(15,23,42,0.56); }
+.runtime-card:nth-child(1) { border-color: rgba(34,211,238,0.48); }
+.runtime-card:nth-child(2) { border-color: rgba(245,158,11,0.48); }
+.runtime-card:nth-child(3) { border-color: rgba(99,102,241,0.52); }
+.runtime-card:nth-child(4) { border-color: rgba(16,185,129,0.48); }
+.runtime-card > span { color: var(--muted); font-size: 0.7rem; letter-spacing: 0.08em; }
+.runtime-card > b { color: #fff; font-size: 0.93rem; line-height: 1.35; }
+.runtime-card > em { color: var(--soft); font-size: 0.76rem; font-style: normal; line-height: 1.5; }
+.runtime-state { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin: 12px 0; }
+.runtime-state > div { display: grid; gap: 4px; padding: 11px 13px; border: 1px solid var(--line); border-radius: 12px; background: rgba(2,6,23,0.32); }
+.runtime-state span { color: var(--muted); font-size: 0.68rem; letter-spacing: 0.06em; }
+.runtime-state b { color: #e2e8f0; font-size: 0.78rem; line-height: 1.45; }
+.runtime-state em { color: var(--soft); font-size: 0.7rem; line-height: 1.4; font-style: normal; }
+.runtime-warning { max-width: none; text-align: center; }
 
 /* ---------- P7 双引擎互补闭环 ---------- */
 .complement-loop { position: relative; width: min(900px, 100%); height: 320px; margin: 4px auto 8px; }
@@ -870,7 +908,70 @@ body.deck .slide--closing .signoff { width: 100%; }
   body.deck #p9 .bp__tag { font-size: 0.56rem; padding: 2px 5px; }
   body.deck #p9 .bp__cell b { font-size: 0.67rem; line-height: 1.3; }
   body.deck #p9 .bp__cell span { font-size: 0.56rem; }
-  /* P10 */
+  /* 新增页面与重编号后的实际演讲页 */
+  body.deck #p5 .lead, body.deck #p8 .lead { margin-bottom: 10px; }
+  body.deck #p5 .safety-guard-grid, body.deck #p8 .runtime-grid { gap: 7px; margin: 6px 0; }
+  body.deck #p5 .safety-guard, body.deck #p8 .runtime-card { min-height: 124px; gap: 4px; padding: 9px 10px; }
+  body.deck #p5 .safety-guard > span, body.deck #p8 .runtime-card > span { font-size: 0.58rem; }
+  body.deck #p5 .safety-guard > b, body.deck #p8 .runtime-card > b { font-size: 0.72rem; }
+  body.deck #p5 .safety-guard > em, body.deck #p8 .runtime-card > em { font-size: 0.6rem; line-height: 1.35; }
+  body.deck #p5 .safety-checkpoints { gap: 6px; margin: 6px 0; padding: 7px 9px; }
+  body.deck #p5 .safety-checkpoints span, body.deck #p8 .runtime-state b { font-size: 0.66rem; }
+  body.deck #p5 .safety-warning, body.deck #p8 .runtime-warning { padding: 8px 10px; font-size: 0.74rem; }
+  body.deck #p6 .memory-scope-cards { gap: 6px; margin: 3px 0 6px; }
+  body.deck #p6 .memory-scope-card { min-height: 99px; gap: 2px; padding: 7px 8px; }
+  body.deck #p6 .memory-scope-card > span { font-size: 0.56rem; }
+  body.deck #p6 .memory-scope-card > b { font-size: 0.72rem; }
+  body.deck #p6 .memory-scope-card > p { font-size: 0.58rem; line-height: 1.3; }
+  body.deck #p6 .memory-scope-card > em { font-size: 0.52rem; }
+  body.deck #p6 .memory-use-cases { gap: 5px; margin: 3px 0 6px; }
+  body.deck #p6 .memory-case { min-height: 124px; gap: 3px; padding: 7px 8px; }
+  body.deck #p6 .memory-case > span { font-size: 0.56rem; }
+  body.deck #p6 .memory-case > b { font-size: 0.7rem; }
+  body.deck #p6 .memory-case > strong { font-size: 0.6rem; }
+  body.deck #p6 .memory-case > em { font-size: 0.58rem; line-height: 1.3; }
+  body.deck #p6 .memory-temperature { grid-template-columns: 1fr 1.1fr 1fr; gap: 5px; padding: 5px 7px; margin: 2px 0 5px; }
+  body.deck #p6 .memory-temperature__cold, body.deck #p6 .memory-temperature__hot { padding: 5px 7px; }
+  body.deck #p6 .memory-temperature span { font-size: 0.58rem; }
+  body.deck #p6 .memory-temperature b { font-size: 0.64rem; }
+  body.deck #p6 .memory-temperature em, body.deck #p6 .memory-temperature__arrow { font-size: 0.54rem; }
+  body.deck #p6 .slide-refs { margin-top: 5px; font-size: 0.56rem; }
+  body.deck #p7 .lead { margin-bottom: 10px; font-size: 0.94rem; line-height: 1.35; }
+  body.deck #p7 .orch__thinking { margin: 2px auto 5px; font-size: 0.67rem; gap: 5px; }
+  body.deck #p7 .orch__brief { gap: 5px; margin-bottom: 6px; }
+  body.deck #p7 .orch__brief > div { padding: 5px 7px; }
+  body.deck #p7 .orch__brief span { font-size: 0.58rem; }
+  body.deck #p7 .orch__brief b { font-size: 0.68rem; }
+  body.deck #p7 .orch-demo__graph { gap: 4px; margin: 5px 0 3px; }
+  body.deck #p7 .orch-demo__node { min-width: 88px; padding: 5px 6px; }
+  body.deck #p7 .orch-demo__workers { min-width: 220px; padding: 4px; }
+  body.deck #p7 .orch-demo__workers span { min-height: 30px; font-size: 0.55rem; }
+  body.deck #p7 .slide-refs { margin-top: 5px; font-size: 0.56rem; }
+  body.deck #p8 .runtime-state { gap: 7px; margin: 6px 0; }
+  body.deck #p8 .runtime-state > div { gap: 3px; padding: 8px 9px; }
+  body.deck #p8 .runtime-state span { font-size: 0.58rem; }
+  body.deck #p8 .runtime-state em { font-size: 0.58rem; line-height: 1.3; }
+  body.deck #p9 .complement-loop { height: 260px; }
+  body.deck #p9 .complement-loop__ring { inset: 24px 112px; }
+  body.deck #p9 .complement-node { min-width: 150px; padding: 8px 10px; }
+  body.deck #p9 .complement-node b { font-size: 0.78rem; }
+  body.deck #p9 .complement-node em { font-size: 0.62rem; }
+  body.deck #p9 .complement-loop__center { width: 112px; height: 66px; font-size: 0.72rem; }
+  body.deck #p10 .value-fly { grid-template-columns: minmax(350px, .92fr) 1.08fr; gap: 20px; margin: 3px 0 8px; }
+  body.deck #p10 .value-fly__stage { height: 282px; }
+  body.deck #p10 .value-fly__ring { inset: 27px 36px; }
+  body.deck #p10 .value-fly__node { min-width: 68px; min-height: 42px; font-size: 0.78rem; }
+  body.deck #p10 .value-fly__center { width: 120px; height: 70px; }
+  body.deck #p10 .value-fly__log { min-height: 145px; gap: 4px; }
+  body.deck #p10 .value-fly__row span { font-size: 0.72rem; }
+  body.deck #p10 .value-fly__cmp { padding: 7px 9px; font-size: 0.7rem; }
+  body.deck #p11 .lead { margin-bottom: 10px; }
+  body.deck #p11 .bp__phase { padding: 8px 8px; }
+  body.deck #p11 .bp__ph b { font-size: 0.78rem; }
+  body.deck #p11 .bp__tag { font-size: 0.56rem; padding: 2px 5px; }
+  body.deck #p11 .bp__cell b { font-size: 0.67rem; line-height: 1.3; }
+  body.deck #p11 .bp__cell span { font-size: 0.56rem; }
+  /* P12 */
   body.deck .closer { margin: 16px 0; gap: 10px; }
   body.deck .signoff { margin-top: 16px; padding-top: 14px; }
 }
@@ -1040,12 +1141,14 @@ body.deck .slide--closing .signoff { width: 100%; }
         <a href="#p2">Friction</a>
         <a href="#p3">Project Layer</a>
         <a href="#p4">System</a>
-        <a href="#p5">Memory</a>
-        <a href="#p6">Orchestration</a>
-        <a href="#p7">Synergy</a>
-        <a href="#p8">Value</a>
-        <a href="#p9">Roadmap</a>
-        <a href="#p10">Principle</a>
+        <a href="#p5">Safety</a>
+        <a href="#p6">Memory</a>
+        <a href="#p7">Delegate</a>
+        <a href="#p8">Recovery</a>
+        <a href="#p9">Synergy</a>
+        <a href="#p10">Value</a>
+        <a href="#p11">Roadmap</a>
+        <a href="#p12">Principle</a>
       </nav>
       <button class="presentation-toggle" type="button" aria-label="进入演讲模式">演讲模式</button>
     </header>
@@ -1101,7 +1204,7 @@ body.deck .slide--closing .signoff { width: 100%; }
             <div class="arch__charter" data-step="3" data-build-step="3">
               <span class="arch__badge">我们补上的项目治理层</span>
               <strong>人机项目协作章程</strong>
-              <em>意图 · 阶段 · 记忆治理 · 垂直切片 · 验收 · 授权</em>
+              <em>意图 · 阶段 · 双引擎 · 安全护栏 · 垂直切片 · 验收 · 授权</em>
               <div class="arch__ties"><span></span><span></span></div>
             </div>
             <!-- 下两层能力(先出现) -->
@@ -1130,7 +1233,7 @@ body.deck .slide--closing .signoff { width: 100%; }
           <p class="eyebrow">CHAPTER II · 04 &nbsp;/&nbsp; THE TWO-ENGINE LOOP</p>
           <h2 class="reveal">两条引擎，贯穿一个项目的完整进程</h2>
           <p class="lead reveal" data-delay="1">
-            项目从模糊想法走向运行演进；记忆保存<b>跨阶段脉络</b>，编排推动<b>每一轮可验证交付</b>。
+            项目从模糊想法走向运行演进；记忆保存<b>跨阶段脉络</b>，编排推动<b>每一轮可验证交付</b>，安全护栏限定<b>哪里能改、何时能发布</b>。
           </p>
           <div class="dual-loop">
             <div class="dual-loop__spine" data-build-step="1">
@@ -1153,17 +1256,55 @@ body.deck .slide--closing .signoff { width: 100%; }
             <div class="dual-loop__feedback" data-build-step="3">
               <span>验证后的执行结果</span><b>→</b><span>记忆候选 / 更新状态</span><b>→</b><span>下一轮更准确的意图理解</span>
             </div>
+            <div class="dual-loop__safety" data-build-step="3">
+              <span>项目安全与发布护栏</span><b>隔离开发 · 明确授权 · 固定 release · 可回滚</b>
+            </div>
           </div>
           <p class="govern reveal" data-delay="2" data-build-step="3">
-            宏观上，项目沿阶段向前；微观上，每一轮协作都经历<b>理解 → 调用记忆 → 编排 → 执行 → 验证 → 沉淀记忆</b>。
+            宏观上，项目沿阶段向前；微观上，每一轮协作都经历<b>理解 → 调用记忆 → 编排 → 执行 → 验证 → 沉淀记忆</b>；安全护栏贯穿其中，不是第三个引擎。
           </p>
         </div>
       </section>
 
-      <!-- P5 记忆引擎：范围、类型、载体与冷热调用 -->
-      <section class="slide" id="p5">
+      <!-- P5 项目安全与发布护栏 -->
+      <section class="slide slide--safety" id="p5">
+        <div class="slide__inner slide__inner--wide">
+          <p class="eyebrow">CHAPTER II · 05 &nbsp;/&nbsp; PROJECT SAFETY &amp; RELEASE GUARDS</p>
+          <h2 class="reveal">两条引擎之外，还需要一条不能越过的安全边界</h2>
+          <p class="lead reveal" data-delay="1">
+            记忆回答“知道什么”，编排回答“怎样推进”；项目安全护栏回答<b>什么能改、在哪改、何时能发布，以及失败怎样退回</b>。
+          </p>
+          <div class="safety-guard-grid" data-build-step="1">
+            <article class="safety-guard safety-guard--start">
+              <span>开工边界</span><b>已核验基线 → 独立 worktree</b>
+              <em>所有会改变行为的修改，从任务分支和隔离工作目录开始。</em>
+            </article>
+            <article class="safety-guard safety-guard--runtime">
+              <span>运行边界</span><b>代码隔离 ≠ 运行隔离</b>
+              <em>开发、测试、预发布、生产还必须分开数据、凭据、端口与外部写权限。</em>
+            </article>
+            <article class="safety-guard safety-guard--release">
+              <span>发布边界</span><b><code>main</code> ≠ production</b>
+              <em><code>main</code> 是已审核代码；生产切换固定 release，仍需明确部署授权。</em>
+            </article>
+            <article class="safety-guard safety-guard--recover">
+              <span>恢复边界</span><b>验证、备份、回滚目标</b>
+              <em>发布前说明影响与回滚点；健康检查失败时切回，不在生产目录临时修。</em>
+            </article>
+          </div>
+          <div class="safety-checkpoints" data-build-step="2" aria-label="项目安全护栏的执行顺序">
+            <span>inspect / dry-run</span><b>→</b><span>精确基线确认</span><b>→</b><span>隔离验证</span><b>→</b><span>显式发布</span><b>→</b><span>健康检查 / 回滚</span>
+          </div>
+          <p class="warn safety-warning reveal" data-delay="2" data-build-step="2">
+            <b>没有当前证据，就不把“分支存在”说成“生产已隔离”。</b> 安全脚本帮助建立源代码边界，不替代实际运行环境的验证。
+          </p>
+        </div>
+      </section>
+
+      <!-- P6 记忆引擎：范围、类型、载体与冷热调用 -->
+      <section class="slide" id="p6">
         <div class="slide__inner">
-          <p class="eyebrow">CHAPTER II · 05 &nbsp;/&nbsp; MEMORY ENGINE · COALA-INSPIRED</p>
+          <p class="eyebrow">CHAPTER II · 06 &nbsp;/&nbsp; MEMORY ENGINE · COALA-INSPIRED</p>
           <h2 class="reveal">记忆引擎：先分清“记什么、放哪里、何时调用”</h2>
           <p class="lead reveal" data-delay="1">
             记忆不是一堆聊天摘要，而是一套有边界的系统：<b>范围决定隔离，类型决定用途，载体决定落点，冷热决定调用时机</b>。
@@ -1217,52 +1358,52 @@ body.deck .slide--closing .signoff { width: 100%; }
         </div>
       </section>
 
-      <!-- P6 编排引擎：Design Thinking → 两级路由 → Manager Pattern -->
-      <section class="slide" id="p6">
+      <!-- P7 编排引擎：先判断是否值得委派 -->
+      <section class="slide" id="p7">
         <div class="slide__inner">
-          <p class="eyebrow">CHAPTER II · 06 &nbsp;/&nbsp; ORCHESTRATION ENGINE · MANAGER PATTERN</p>
-          <h2 class="reveal">编排引擎：主 Agent 理解意图，再把复杂协作留在后台</h2>
+          <p class="eyebrow">CHAPTER II · 07 &nbsp;/&nbsp; ORCHESTRATION ENGINE · DECISION &amp; PERMISSION</p>
+          <h2 class="reveal">编排引擎：先决定不派，再决定怎样派</h2>
           <p class="lead reveal" data-delay="1">
-            主 Agent 用 Design Thinking 先理解真实阻力，再判断项目阶段、本轮交付物与风险；随后用 Manager Pattern 分层委派，最后<b>回收、审查与验收</b>。
+            <code>NO_DELEGATION</code> 是正常结果：主 Agent 直接完成。只有独立、有收益、非阻塞、可验收四道价值闸都通过，才进入 <code>DELEGATE</code>。
           </p>
           <div class="orch__thinking" data-build-step="1">
-            <span>共情 / 定义</span><b>→</b><span>构思</span><b>→</b><span>原型</span><b>→</b><span>测试</span>
-            <em>探索 · 启动 · 实施 · 循环返回</em>
+            <span>独立</span><b>→</b><span>有收益</span><b>→</b><span>非阻塞</span><b>→</b><span>可验收</span>
+            <em>四道价值闸全部通过，才值得委派</em>
           </div>
           <div class="orch__brief" data-build-step="1">
-            <div><span>用户感受</span><b>“这个页面很乱”</b></div>
-            <div><span>阶段判断</span><b>实施 · 体验问题</b></div>
-            <div><span>本轮交付物</span><b>一条 UI 垂直切片</b></div>
-            <div><span>验收标准</span><b>1280×720 无滚动</b></div>
+            <div><span>路由结果</span><b>NO_DELEGATION / DELEGATE</b></div>
+            <div><span>执行配置</span><b>角色 · 模型 · 推理 · 验收</b></div>
+            <div><span>权限范围</span><b>P0 只读 → P3 真实副作用</b></div>
+            <div><span>升级条件</span><b>越界、冲突、风险 → 主 Agent</b></div>
           </div>
           <div class="orch__pipeline" data-build-step="2">
-            <div class="orch__node orch__node--user"><span>输入</span><b>一句感受</b><em>先理解，不急着分类</em></div>
+            <div class="orch__node orch__node--user"><span>路由</span><b>不派 / 派</b><em>不为展示多 Agent 而拆分</em></div>
             <div class="orch__edge">→</div>
-            <div class="orch__node orch__node--lead"><span>Manager</span><b>主 Agent</b><em>阶段判断 · 问题单 · 风险</em></div>
+            <div class="orch__node orch__node--lead"><span>Manager</span><b>主 Agent</b><em>问题单 · 权限 · 风险</em></div>
             <div class="orch__edge">→</div>
             <div class="orch__workers orch__node--worker" id="orchWorker" aria-label="能力层级">
-              <span class="orch__tier orch__tier--frontier"><b>最强模型</b><em>架构 · 冲突裁决 · 高风险复核</em></span>
-              <span class="orch__tier orch__tier--balanced"><b>常规模型</b><em>开发 · 测试 · 文档</em></span>
-              <span class="orch__tier orch__tier--fast"><b>快速模型</b><em>搜索 · 分类 · 扫描</em></span>
+              <span class="orch__tier orch__tier--frontier"><b>Frontier 主控</b><em>架构 · 冲突裁决 · 高风险复核</em></span>
+              <span class="orch__tier orch__tier--balanced"><b>Balanced · P0 / P1</b><em>开发 · 测试 · 文档</em></span>
+              <span class="orch__tier orch__tier--fast"><b>Fast · P0</b><em>搜索 · 分类 · 扫描</em></span>
             </div>
             <div class="orch__edge">→</div>
             <div class="orch__node orch__node--review"><span>闭环</span><b>回收与验收</b><em>主 Agent 审查 · 交付 · 记忆</em></div>
           </div>
           <div class="orch-demo" data-build-step="3">
             <div class="orch-demo__top">
-              <span>小示例 · 一次委派如何运转</span>
+              <span>小示例 · 一次有边界的委派</span>
               <button class="mini-cta mini-cta--warm" id="orchDemoRun" type="button">▶ 第一步</button>
             </div>
             <div class="orch-demo__graph" aria-label="主 Agent 将问题单委派给不同能力层级并回收结果">
-              <div class="orch-demo__node orch-demo__node--intent" data-orch-node="0"><b>感受</b><small>页面很乱</small></div>
+              <div class="orch-demo__node orch-demo__node--intent" data-orch-node="0"><b>价值闸</b><small>值得派吗？</small></div>
               <span class="orch-demo__edge" data-orch-edge="0">→</span>
-              <div class="orch-demo__node orch-demo__node--manager" data-orch-node="1"><b>主 Agent</b><small>形成问题单</small></div>
+              <div class="orch-demo__node orch-demo__node--manager" data-orch-node="1"><b>主 Agent</b><small>配置权限与验收</small></div>
               <span class="orch-demo__edge" data-orch-edge="1">→</span>
               <div class="orch-demo__workers" data-orch-node="2"><span>架构 / 复核</span><span>实现 / 测试</span><span>搜索 / 扫描</span></div>
               <span class="orch-demo__edge" data-orch-edge="2">→</span>
               <div class="orch-demo__node orch-demo__node--accept" data-orch-node="3"><b>验收</b><small>证据回到主 Agent</small></div>
             </div>
-            <div class="orch-demo__log" id="orchDemoLog" aria-live="polite">点击后，看“理解意图 → 问题单 → 委派 → 回收 → 验收”走完一轮。</div>
+            <div class="orch-demo__log" id="orchDemoLog" aria-live="polite">点击后，看“价值闸 → 执行配置 → 委派 → 回收 → 验收”走完一轮。</div>
           </div>
           <p class="slide-refs orch__refs" data-build-step="3">
             理论参考：<a href="https://www.anthropic.com/engineering/multi-agent-research-system" target="_blank" rel="noopener">Anthropic：Orchestrator–Worker 多 Agent 研究系统</a> ·
@@ -1271,10 +1412,35 @@ body.deck .slide--closing .signoff { width: 100%; }
         </div>
       </section>
 
-      <!-- P7 双引擎互补闭环 -->
-      <section class="slide slide--flywheel" id="p7">
+      <!-- P8 运行时派遣与回收 -->
+      <section class="slide slide--runtime" id="p8">
         <div class="slide__inner slide__inner--wide">
-          <p class="eyebrow">CHAPTER II · 07 &nbsp;/&nbsp; TWO ENGINES, ONE PROJECT</p>
+          <p class="eyebrow">CHAPTER II · 08 &nbsp;/&nbsp; DELEGATION RUNTIME &amp; RECOVERY</p>
+          <h2 class="reveal">派出去之前，先证明它可控</h2>
+          <p class="lead reveal" data-delay="1">
+            真正的多 Agent 不是“一次拉起很多任务”，而是主 Agent 始终保留容量、可读状态、所有权与收回决策权。
+          </p>
+          <div class="runtime-grid" data-build-step="1">
+            <article class="runtime-card"><span>健康探针</span><b>首个 Worker 已实体化、可读取</b><em>第一个不可管理，就停止本批 fan-out。</em></article>
+            <article class="runtime-card"><span>额度预留</span><b>计划 Worker + 预留额度 ≤ 当前容量</b><em>把验证、审查和一次恢复的空间留给主 Agent。</em></article>
+            <article class="runtime-card"><span>任务包</span><b>目标、范围、权限、预算、验收</b><em>每个 Worker 只接收一个可独立复核的交付物。</em></article>
+            <article class="runtime-card"><span>所有权</span><b>互斥文件 / 模块；禁止继续派遣</b><em>同一文件一个写入者；信息不足就报告缺口，不猜测。</em></article>
+          </div>
+          <div class="runtime-state" data-build-step="2" aria-label="故障的回收路径">
+            <div><span>未实体化</span><b>UNMATERIALIZED → STOP_BATCH → DIRECT / REPLAN</b><em>不追问、不归档、不把临时 ID 当任务。</em></div>
+            <div><span>运行后超时</span><b>TIMEOUT → RECLAIMED</b><em>主 Agent 按同一问题单接管，不等待迟到结果。</em></div>
+            <div><span>结果不足</span><b>原 thread 只追问一次；最多两次执行机会</b><em>之后主 Agent 接管，禁止无条件第三次创建或重派。</em></div>
+          </div>
+          <p class="warn runtime-warning reveal" data-delay="2" data-build-step="2">
+            只有输出<b>已验证且已采纳</b>，才能逐个归档；禁止并行连发归档请求。
+          </p>
+        </div>
+      </section>
+
+      <!-- P9 双引擎互补闭环 -->
+      <section class="slide slide--flywheel" id="p9">
+        <div class="slide__inner slide__inner--wide">
+          <p class="eyebrow">CHAPTER II · 09 &nbsp;/&nbsp; TWO ENGINES, ONE PROJECT</p>
           <h2 class="reveal">双引擎互补：一条闭环，让项目越做越懂你</h2>
           <p class="lead reveal" data-delay="1">
             记忆引擎让主 Agent <b>更好地理解意图</b>；编排引擎让每次执行产生<b>更高质量、可验证的记忆</b>。两者互相喂养，持续推动同一个项目进程。
@@ -1296,10 +1462,10 @@ body.deck .slide--closing .signoff { width: 100%; }
         </div>
       </section>
 
-      <!-- P8 价值飞轮：保留作为具体示例 -->
-      <section class="slide slide--value" id="p8">
+      <!-- P10 价值飞轮：保留作为具体示例 -->
+      <section class="slide slide--value" id="p10">
         <div class="slide__inner slide__inner--wide">
-          <p class="eyebrow">CHAPTER II · 08 &nbsp;/&nbsp; VALUE IN MOTION</p>
+          <p class="eyebrow">CHAPTER II · 10 &nbsp;/&nbsp; VALUE IN MOTION</p>
           <h2 class="reveal">价值不是记住更多，而是下一次少问你一遍</h2>
           <p class="lead reveal" data-delay="1">
             下面把一轮协作具体跑一遍：从理解感受开始，调用相关记忆，再经过编排、执行、验证与沉淀，最后反哺下一次理解。
@@ -1342,10 +1508,10 @@ body.deck .slide--closing .signoff { width: 100%; }
         </div>
       </section>
 
-      <!-- P9 双引擎成长蓝图：两条泳道、四个阶段 -->
-      <section class="slide" id="p9">
+      <!-- P11 双引擎成长蓝图：两条泳道、四个阶段 -->
+      <section class="slide" id="p11">
         <div class="slide__inner slide__inner--wide">
-          <p class="eyebrow">CHAPTER II · 09 &nbsp;/&nbsp; TWO-ENGINE EVOLUTION BLUEPRINT</p>
+          <p class="eyebrow">CHAPTER II · 11 &nbsp;/&nbsp; TWO-ENGINE EVOLUTION BLUEPRINT</p>
           <h2 class="reveal">双引擎成长蓝图：现在在哪里，下一步去哪里</h2>
           <p class="lead reveal" data-delay="1">
             记忆与编排不是两张孤立的路线图，而是同一套项目章程的两条成长泳道：一期已经运行，后续逐期增强。
@@ -1355,14 +1521,14 @@ body.deck .slide--closing .signoff { width: 100%; }
               <span><span class="dot dot--solid"></span>当前已验证</span>
               <span><span class="dot dot--dash"></span>规划路线</span>
             </div>
-            <div class="bp__grid" id="bpGrid">
+            <div class="bp__grid" id="blueprintGrid">
               <!-- 四列由 JS 注入 -->
             </div>
             <div class="bp__rails">
-              <span class="bp__railtag">贯穿四期的三道护栏</span>
+              <span class="bp__railtag">贯穿四期的项目护栏</span>
               <span class="rail-guard">当前证据高于历史记忆</span>
-              <span class="rail-guard">项目隔离 · 显式晋升</span>
-              <span class="rail-guard">人类最终授权</span>
+              <span class="rail-guard">独立 worktree · 运行环境隔离</span>
+              <span class="rail-guard"><code>main</code> ≠ production · 固定 release · 明确授权 · 可回滚</span>
             </div>
             <p class="bp__refs">
               理论参考：<a href="https://arxiv.org/abs/2309.02427" target="_blank" rel="noopener">CoALA</a> ·
@@ -1379,10 +1545,10 @@ body.deck .slide--closing .signoff { width: 100%; }
         </div>
       </section>
 
-      <!-- P10 收束 -->
-      <section class="slide slide--closing" id="p10">
+      <!-- P12 收束 -->
+      <section class="slide slide--closing" id="p12">
         <div class="slide__inner">
-          <p class="eyebrow">CHAPTER II · 10 &nbsp;/&nbsp; FROM TASKS TO PROJECTS</p>
+          <p class="eyebrow">CHAPTER II · 12 &nbsp;/&nbsp; FROM TASKS TO PROJECTS</p>
           <h2 class="reveal">从完成任务，到持续完成项目</h2>
           <div class="closer closer--center">
             <p class="closer__line reveal" data-delay="2">模型会更新，工具会更替，Skill 会退化。</p>
@@ -1401,7 +1567,7 @@ body.deck .slide--closing .signoff { width: 100%; }
     <!-- 演讲模式控制条 -->
     <div class="deck-ctrl" id="deckCtrl" hidden>
       <button id="deckPrev" aria-label="上一页">‹</button>
-      <span id="deckNum">1 / 10</span>
+      <span id="deckNum">1 / 12</span>
       <button id="deckNext" aria-label="下一页">›</button>
     </div>
 
@@ -1478,8 +1644,8 @@ const P4 = (function () {
   return { litAll, autoRun: () => litAll(false), reset };
 })();
 
-/* ---------- P6 worker 高亮：复杂度在后台，但能力层级可见 ---------- */
-const P6 = (function () {
+/* ---------- P7 Worker 高亮：复杂度在后台，但能力层级可见 ---------- */
+const OrchWorker = (function () {
   const worker = document.getElementById("orchWorker");
   if (!worker) return null;
   function fadeWorker() { worker.classList.add("ready"); }
@@ -1607,13 +1773,13 @@ const ValueFly = (function () {
   return { run, reset };
 })();
 
-/* ---------- P9 双泳道四阶段蓝图 ---------- */
-const P9 = (function () {
-  const grid = document.getElementById("bpGrid");
+/* ---------- P11 双泳道四阶段蓝图 ---------- */
+const Blueprint = (function () {
+  const grid = document.getElementById("blueprintGrid");
   if (!grid) return null;
 
   const phases = [
-    { rn: "第一期 · 结构化", done: true, mem: "范围、类型、可信状态、载体分工与项目隔离", orch: "Manager 模式、两级路由、垂直切片、模型能力分层与主 Agent 验收", proof: "新对话能恢复脉络；每轮交付可独立验收" },
+    { rn: "第一期 · 结构化", done: true, mem: "范围、类型、可信状态、载体分工与项目隔离", orch: "NO_DELEGATION 价值闸、P0–P3 权限、任务包、主 Agent 验收", proof: "新对话能恢复脉络；代码从独立 worktree 开始，发布仍需运行环境证据" },
     { rn: "第二期 · 可观测、可评估", done: false, mem: "有界冷热记忆、混合检索、来源与可信度过滤", orch: "机器可读问题单与能力目录；路由追踪、质量 / 成本 / 失败评估", proof: "知道为何这样路由，并能用证据比较结果" },
     { rn: "第三期 · 可恢复、可续跑", done: false, mem: "原子记忆、关联 / 冲突 / 来源链与过期管理", orch: "持久任务图、检查点、人工暂停恢复、幂等执行与失败重规划", proof: "长任务跨会话继续，不重复成功步骤" },
     { rn: "第四期 · 记忆驱动、受治理", done: false, mem: "聚类、去重、陈旧检测与 Dream 式候选整理", orch: "记忆辅助意图预测、风险 / 能力选模、评估驱动的路由候选", proof: "候选可解释、可审阅、可拒绝、可回滚" },
@@ -1677,12 +1843,12 @@ function observeAuto(elId, cb, threshold) {
 }
 if (P3) observeAuto("archStack", P3.autoRun, 0.35);
 if (P4) observeAuto("heroWheel", P4.autoRun, 0.4);
-if (P6) observeAuto("orchWorker", () => setTimeout(() => {
-  if (!inDeck()) P6.fadeWorker();
+if (OrchWorker) observeAuto("orchWorker", () => setTimeout(() => {
+  if (!inDeck()) OrchWorker.fadeWorker();
 }, 1200), 0.4);
-if (P9) observeAuto("bpGrid", P9.autoRun, 0.45);
+if (Blueprint) observeAuto("blueprintGrid", Blueprint.autoRun, 0.45);
 
-/* ---------- P5/P6 小型演示：只展示一次最小闭环 ---------- */
+/* ---------- P6/P7 小型演示：只展示一次最小闭环 ---------- */
 function makeDemo({ button, log, steps, doneText, onStep, onDone }) {
   if (!button || !log) return null;
   let index = -1;
@@ -1744,9 +1910,9 @@ const OrchDemo = makeDemo({
   button: document.getElementById("orchDemoRun"),
   log: document.getElementById("orchDemoLog"),
   steps: [
-    "① 理解意图：这是体验问题，不先把它误写成 Bug。",
-    "② 形成问题单：目标是层级清晰，验收是 1280×720 无滚动。",
-    "③ 委派：Frontier 主控；Balanced 实现；Fast 做只读扫描。",
+    "① 价值闸：独立、有收益、非阻塞、可验收，先判断是否值得派。",
+    "② 执行配置：明确角色、模型、推理、P0–P3 权限与验收。",
+    "③ 派遣：主 Agent 保留最终决策；Worker 不扩大范围、不继续派遣。",
     "④ 回收证据：代码、测试、截图与运行结果一起返回。",
     "⑤ 主 Agent 审查：接受、退回或调整，最后统一交付。",
   ],
@@ -1785,10 +1951,10 @@ const OrchDemo = makeDemo({
     slide.querySelectorAll("[data-build-step]").forEach((el) => set.add(+el.getAttribute("data-build-step")));
     return [...set].sort((a, b) => a - b);
   }
-  // 每页最大 build 数(P9 特殊:蓝图三列 = 额外 3 步)
+  // 每页最大 build 数(P11 特殊:蓝图三列 = 额外 3 步)
   function maxStepOf(i) {
     const slide = slides[i];
-    if (slide.id === "p9") return 3;
+    if (slide.id === "p11") return 3;
     const steps = buildStepsOf(slide);
     return steps.length ? steps[steps.length - 1] : 0;
   }
@@ -1816,8 +1982,8 @@ const OrchDemo = makeDemo({
   function triggerPageAnim(id, s) {
     if (id === "p3" && P3) { for (let k = 1; k <= s; k++) P3.litStep(k); }
     else if (id === "p4" && P4 && s >= 1) { P4.litAll(true); }
-    else if (id === "p6" && P6 && s >= 3) { P6.fadeWorker(); }
-    else if (id === "p9" && P9 && s >= 1) { for (let k = 1; k <= s; k++) P9.litCol(k); }
+    else if (id === "p7" && OrchWorker && s >= 3) { OrchWorker.fadeWorker(); }
+    else if (id === "p11" && Blueprint && s >= 1) { for (let k = 1; k <= s; k++) Blueprint.litCol(k); }
   }
 
   function show(i) {
@@ -1830,11 +1996,11 @@ const OrchDemo = makeDemo({
     // 清除分步动画的 .lit 残留(普通模式滚动可能已触发),让 deck 从头分步
     if (slide.id === "p3") slide.querySelectorAll(".arch__layer,.arch__charter").forEach((el) => el.classList.remove("lit"));
     if (slide.id === "p4" && P4) P4.reset();
-    if (slide.id === "p5" && MemoryDemo) MemoryDemo.reset();
-    if (slide.id === "p6") slide.querySelectorAll(".orch__node--worker").forEach((el) => el.classList.remove("fade", "ready"));
-    if (slide.id === "p6" && OrchDemo) OrchDemo.reset();
-    if (slide.id === "p8" && ValueFly) ValueFly.reset();
-    if (slide.id === "p9" && P9) P9.resetCols();
+    if (slide.id === "p6" && MemoryDemo) MemoryDemo.reset();
+    if (slide.id === "p7") slide.querySelectorAll(".orch__node--worker").forEach((el) => el.classList.remove("fade", "ready"));
+    if (slide.id === "p7" && OrchDemo) OrchDemo.reset();
+    if (slide.id === "p10" && ValueFly) ValueFly.reset();
+    if (slide.id === "p11" && Blueprint) Blueprint.resetCols();
     slide.scrollTop = 0;
     applyStep(idx, 0);
     updateCounter();

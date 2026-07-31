@@ -24,12 +24,14 @@
         <a href="#p2">Friction</a>
         <a href="#p3">Project Layer</a>
         <a href="#p4">System</a>
-        <a href="#p5">Memory</a>
-        <a href="#p6">Orchestration</a>
-        <a href="#p7">Synergy</a>
-        <a href="#p8">Value</a>
-        <a href="#p9">Roadmap</a>
-        <a href="#p10">Principle</a>
+        <a href="#p5">Safety</a>
+        <a href="#p6">Memory</a>
+        <a href="#p7">Delegate</a>
+        <a href="#p8">Recovery</a>
+        <a href="#p9">Synergy</a>
+        <a href="#p10">Value</a>
+        <a href="#p11">Roadmap</a>
+        <a href="#p12">Principle</a>
       </nav>
       <button class="presentation-toggle" type="button" aria-label="进入演讲模式">演讲模式</button>
     </header>
@@ -85,7 +87,7 @@
             <div class="arch__charter" data-step="3" data-build-step="3">
               <span class="arch__badge">我们补上的项目治理层</span>
               <strong>人机项目协作章程</strong>
-              <em>意图 · 阶段 · 记忆治理 · 垂直切片 · 验收 · 授权</em>
+              <em>意图 · 阶段 · 双引擎 · 安全护栏 · 垂直切片 · 验收 · 授权</em>
               <div class="arch__ties"><span></span><span></span></div>
             </div>
             <!-- 下两层能力(先出现) -->
@@ -114,7 +116,7 @@
           <p class="eyebrow">CHAPTER II · 04 &nbsp;/&nbsp; THE TWO-ENGINE LOOP</p>
           <h2 class="reveal">两条引擎，贯穿一个项目的完整进程</h2>
           <p class="lead reveal" data-delay="1">
-            项目从模糊想法走向运行演进；记忆保存<b>跨阶段脉络</b>，编排推动<b>每一轮可验证交付</b>。
+            项目从模糊想法走向运行演进；记忆保存<b>跨阶段脉络</b>，编排推动<b>每一轮可验证交付</b>，安全护栏限定<b>哪里能改、何时能发布</b>。
           </p>
           <div class="dual-loop">
             <div class="dual-loop__spine" data-build-step="1">
@@ -137,17 +139,55 @@
             <div class="dual-loop__feedback" data-build-step="3">
               <span>验证后的执行结果</span><b>→</b><span>记忆候选 / 更新状态</span><b>→</b><span>下一轮更准确的意图理解</span>
             </div>
+            <div class="dual-loop__safety" data-build-step="3">
+              <span>项目安全与发布护栏</span><b>隔离开发 · 明确授权 · 固定 release · 可回滚</b>
+            </div>
           </div>
           <p class="govern reveal" data-delay="2" data-build-step="3">
-            宏观上，项目沿阶段向前；微观上，每一轮协作都经历<b>理解 → 调用记忆 → 编排 → 执行 → 验证 → 沉淀记忆</b>。
+            宏观上，项目沿阶段向前；微观上，每一轮协作都经历<b>理解 → 调用记忆 → 编排 → 执行 → 验证 → 沉淀记忆</b>；安全护栏贯穿其中，不是第三个引擎。
           </p>
         </div>
       </section>
 
-      <!-- P5 记忆引擎：范围、类型、载体与冷热调用 -->
-      <section class="slide" id="p5">
+      <!-- P5 项目安全与发布护栏 -->
+      <section class="slide slide--safety" id="p5">
+        <div class="slide__inner slide__inner--wide">
+          <p class="eyebrow">CHAPTER II · 05 &nbsp;/&nbsp; PROJECT SAFETY &amp; RELEASE GUARDS</p>
+          <h2 class="reveal">两条引擎之外，还需要一条不能越过的安全边界</h2>
+          <p class="lead reveal" data-delay="1">
+            记忆回答“知道什么”，编排回答“怎样推进”；项目安全护栏回答<b>什么能改、在哪改、何时能发布，以及失败怎样退回</b>。
+          </p>
+          <div class="safety-guard-grid" data-build-step="1">
+            <article class="safety-guard safety-guard--start">
+              <span>开工边界</span><b>已核验基线 → 独立 worktree</b>
+              <em>所有会改变行为的修改，从任务分支和隔离工作目录开始。</em>
+            </article>
+            <article class="safety-guard safety-guard--runtime">
+              <span>运行边界</span><b>代码隔离 ≠ 运行隔离</b>
+              <em>开发、测试、预发布、生产还必须分开数据、凭据、端口与外部写权限。</em>
+            </article>
+            <article class="safety-guard safety-guard--release">
+              <span>发布边界</span><b><code>main</code> ≠ production</b>
+              <em><code>main</code> 是已审核代码；生产切换固定 release，仍需明确部署授权。</em>
+            </article>
+            <article class="safety-guard safety-guard--recover">
+              <span>恢复边界</span><b>验证、备份、回滚目标</b>
+              <em>发布前说明影响与回滚点；健康检查失败时切回，不在生产目录临时修。</em>
+            </article>
+          </div>
+          <div class="safety-checkpoints" data-build-step="2" aria-label="项目安全护栏的执行顺序">
+            <span>inspect / dry-run</span><b>→</b><span>精确基线确认</span><b>→</b><span>隔离验证</span><b>→</b><span>显式发布</span><b>→</b><span>健康检查 / 回滚</span>
+          </div>
+          <p class="warn safety-warning reveal" data-delay="2" data-build-step="2">
+            <b>没有当前证据，就不把“分支存在”说成“生产已隔离”。</b> 安全脚本帮助建立源代码边界，不替代实际运行环境的验证。
+          </p>
+        </div>
+      </section>
+
+      <!-- P6 记忆引擎：范围、类型、载体与冷热调用 -->
+      <section class="slide" id="p6">
         <div class="slide__inner">
-          <p class="eyebrow">CHAPTER II · 05 &nbsp;/&nbsp; MEMORY ENGINE · COALA-INSPIRED</p>
+          <p class="eyebrow">CHAPTER II · 06 &nbsp;/&nbsp; MEMORY ENGINE · COALA-INSPIRED</p>
           <h2 class="reveal">记忆引擎：先分清“记什么、放哪里、何时调用”</h2>
           <p class="lead reveal" data-delay="1">
             记忆不是一堆聊天摘要，而是一套有边界的系统：<b>范围决定隔离，类型决定用途，载体决定落点，冷热决定调用时机</b>。
@@ -201,52 +241,52 @@
         </div>
       </section>
 
-      <!-- P6 编排引擎：Design Thinking → 两级路由 → Manager Pattern -->
-      <section class="slide" id="p6">
+      <!-- P7 编排引擎：先判断是否值得委派 -->
+      <section class="slide" id="p7">
         <div class="slide__inner">
-          <p class="eyebrow">CHAPTER II · 06 &nbsp;/&nbsp; ORCHESTRATION ENGINE · MANAGER PATTERN</p>
-          <h2 class="reveal">编排引擎：主 Agent 理解意图，再把复杂协作留在后台</h2>
+          <p class="eyebrow">CHAPTER II · 07 &nbsp;/&nbsp; ORCHESTRATION ENGINE · DECISION &amp; PERMISSION</p>
+          <h2 class="reveal">编排引擎：先决定不派，再决定怎样派</h2>
           <p class="lead reveal" data-delay="1">
-            主 Agent 用 Design Thinking 先理解真实阻力，再判断项目阶段、本轮交付物与风险；随后用 Manager Pattern 分层委派，最后<b>回收、审查与验收</b>。
+            <code>NO_DELEGATION</code> 是正常结果：主 Agent 直接完成。只有独立、有收益、非阻塞、可验收四道价值闸都通过，才进入 <code>DELEGATE</code>。
           </p>
           <div class="orch__thinking" data-build-step="1">
-            <span>共情 / 定义</span><b>→</b><span>构思</span><b>→</b><span>原型</span><b>→</b><span>测试</span>
-            <em>探索 · 启动 · 实施 · 循环返回</em>
+            <span>独立</span><b>→</b><span>有收益</span><b>→</b><span>非阻塞</span><b>→</b><span>可验收</span>
+            <em>四道价值闸全部通过，才值得委派</em>
           </div>
           <div class="orch__brief" data-build-step="1">
-            <div><span>用户感受</span><b>“这个页面很乱”</b></div>
-            <div><span>阶段判断</span><b>实施 · 体验问题</b></div>
-            <div><span>本轮交付物</span><b>一条 UI 垂直切片</b></div>
-            <div><span>验收标准</span><b>1280×720 无滚动</b></div>
+            <div><span>路由结果</span><b>NO_DELEGATION / DELEGATE</b></div>
+            <div><span>执行配置</span><b>角色 · 模型 · 推理 · 验收</b></div>
+            <div><span>权限范围</span><b>P0 只读 → P3 真实副作用</b></div>
+            <div><span>升级条件</span><b>越界、冲突、风险 → 主 Agent</b></div>
           </div>
           <div class="orch__pipeline" data-build-step="2">
-            <div class="orch__node orch__node--user"><span>输入</span><b>一句感受</b><em>先理解，不急着分类</em></div>
+            <div class="orch__node orch__node--user"><span>路由</span><b>不派 / 派</b><em>不为展示多 Agent 而拆分</em></div>
             <div class="orch__edge">→</div>
-            <div class="orch__node orch__node--lead"><span>Manager</span><b>主 Agent</b><em>阶段判断 · 问题单 · 风险</em></div>
+            <div class="orch__node orch__node--lead"><span>Manager</span><b>主 Agent</b><em>问题单 · 权限 · 风险</em></div>
             <div class="orch__edge">→</div>
             <div class="orch__workers orch__node--worker" id="orchWorker" aria-label="能力层级">
-              <span class="orch__tier orch__tier--frontier"><b>最强模型</b><em>架构 · 冲突裁决 · 高风险复核</em></span>
-              <span class="orch__tier orch__tier--balanced"><b>常规模型</b><em>开发 · 测试 · 文档</em></span>
-              <span class="orch__tier orch__tier--fast"><b>快速模型</b><em>搜索 · 分类 · 扫描</em></span>
+              <span class="orch__tier orch__tier--frontier"><b>Frontier 主控</b><em>架构 · 冲突裁决 · 高风险复核</em></span>
+              <span class="orch__tier orch__tier--balanced"><b>Balanced · P0 / P1</b><em>开发 · 测试 · 文档</em></span>
+              <span class="orch__tier orch__tier--fast"><b>Fast · P0</b><em>搜索 · 分类 · 扫描</em></span>
             </div>
             <div class="orch__edge">→</div>
             <div class="orch__node orch__node--review"><span>闭环</span><b>回收与验收</b><em>主 Agent 审查 · 交付 · 记忆</em></div>
           </div>
           <div class="orch-demo" data-build-step="3">
             <div class="orch-demo__top">
-              <span>小示例 · 一次委派如何运转</span>
+              <span>小示例 · 一次有边界的委派</span>
               <button class="mini-cta mini-cta--warm" id="orchDemoRun" type="button">▶ 第一步</button>
             </div>
             <div class="orch-demo__graph" aria-label="主 Agent 将问题单委派给不同能力层级并回收结果">
-              <div class="orch-demo__node orch-demo__node--intent" data-orch-node="0"><b>感受</b><small>页面很乱</small></div>
+              <div class="orch-demo__node orch-demo__node--intent" data-orch-node="0"><b>价值闸</b><small>值得派吗？</small></div>
               <span class="orch-demo__edge" data-orch-edge="0">→</span>
-              <div class="orch-demo__node orch-demo__node--manager" data-orch-node="1"><b>主 Agent</b><small>形成问题单</small></div>
+              <div class="orch-demo__node orch-demo__node--manager" data-orch-node="1"><b>主 Agent</b><small>配置权限与验收</small></div>
               <span class="orch-demo__edge" data-orch-edge="1">→</span>
               <div class="orch-demo__workers" data-orch-node="2"><span>架构 / 复核</span><span>实现 / 测试</span><span>搜索 / 扫描</span></div>
               <span class="orch-demo__edge" data-orch-edge="2">→</span>
               <div class="orch-demo__node orch-demo__node--accept" data-orch-node="3"><b>验收</b><small>证据回到主 Agent</small></div>
             </div>
-            <div class="orch-demo__log" id="orchDemoLog" aria-live="polite">点击后，看“理解意图 → 问题单 → 委派 → 回收 → 验收”走完一轮。</div>
+            <div class="orch-demo__log" id="orchDemoLog" aria-live="polite">点击后，看“价值闸 → 执行配置 → 委派 → 回收 → 验收”走完一轮。</div>
           </div>
           <p class="slide-refs orch__refs" data-build-step="3">
             理论参考：<a href="https://www.anthropic.com/engineering/multi-agent-research-system" target="_blank" rel="noopener">Anthropic：Orchestrator–Worker 多 Agent 研究系统</a> ·
@@ -255,10 +295,35 @@
         </div>
       </section>
 
-      <!-- P7 双引擎互补闭环 -->
-      <section class="slide slide--flywheel" id="p7">
+      <!-- P8 运行时派遣与回收 -->
+      <section class="slide slide--runtime" id="p8">
         <div class="slide__inner slide__inner--wide">
-          <p class="eyebrow">CHAPTER II · 07 &nbsp;/&nbsp; TWO ENGINES, ONE PROJECT</p>
+          <p class="eyebrow">CHAPTER II · 08 &nbsp;/&nbsp; DELEGATION RUNTIME &amp; RECOVERY</p>
+          <h2 class="reveal">派出去之前，先证明它可控</h2>
+          <p class="lead reveal" data-delay="1">
+            真正的多 Agent 不是“一次拉起很多任务”，而是主 Agent 始终保留容量、可读状态、所有权与收回决策权。
+          </p>
+          <div class="runtime-grid" data-build-step="1">
+            <article class="runtime-card"><span>健康探针</span><b>首个 Worker 已实体化、可读取</b><em>第一个不可管理，就停止本批 fan-out。</em></article>
+            <article class="runtime-card"><span>额度预留</span><b>计划 Worker + 预留额度 ≤ 当前容量</b><em>把验证、审查和一次恢复的空间留给主 Agent。</em></article>
+            <article class="runtime-card"><span>任务包</span><b>目标、范围、权限、预算、验收</b><em>每个 Worker 只接收一个可独立复核的交付物。</em></article>
+            <article class="runtime-card"><span>所有权</span><b>互斥文件 / 模块；禁止继续派遣</b><em>同一文件一个写入者；信息不足就报告缺口，不猜测。</em></article>
+          </div>
+          <div class="runtime-state" data-build-step="2" aria-label="故障的回收路径">
+            <div><span>未实体化</span><b>UNMATERIALIZED → STOP_BATCH → DIRECT / REPLAN</b><em>不追问、不归档、不把临时 ID 当任务。</em></div>
+            <div><span>运行后超时</span><b>TIMEOUT → RECLAIMED</b><em>主 Agent 按同一问题单接管，不等待迟到结果。</em></div>
+            <div><span>结果不足</span><b>原 thread 只追问一次；最多两次执行机会</b><em>之后主 Agent 接管，禁止无条件第三次创建或重派。</em></div>
+          </div>
+          <p class="warn runtime-warning reveal" data-delay="2" data-build-step="2">
+            只有输出<b>已验证且已采纳</b>，才能逐个归档；禁止并行连发归档请求。
+          </p>
+        </div>
+      </section>
+
+      <!-- P9 双引擎互补闭环 -->
+      <section class="slide slide--flywheel" id="p9">
+        <div class="slide__inner slide__inner--wide">
+          <p class="eyebrow">CHAPTER II · 09 &nbsp;/&nbsp; TWO ENGINES, ONE PROJECT</p>
           <h2 class="reveal">双引擎互补：一条闭环，让项目越做越懂你</h2>
           <p class="lead reveal" data-delay="1">
             记忆引擎让主 Agent <b>更好地理解意图</b>；编排引擎让每次执行产生<b>更高质量、可验证的记忆</b>。两者互相喂养，持续推动同一个项目进程。
@@ -280,10 +345,10 @@
         </div>
       </section>
 
-      <!-- P8 价值飞轮：保留作为具体示例 -->
-      <section class="slide slide--value" id="p8">
+      <!-- P10 价值飞轮：保留作为具体示例 -->
+      <section class="slide slide--value" id="p10">
         <div class="slide__inner slide__inner--wide">
-          <p class="eyebrow">CHAPTER II · 08 &nbsp;/&nbsp; VALUE IN MOTION</p>
+          <p class="eyebrow">CHAPTER II · 10 &nbsp;/&nbsp; VALUE IN MOTION</p>
           <h2 class="reveal">价值不是记住更多，而是下一次少问你一遍</h2>
           <p class="lead reveal" data-delay="1">
             下面把一轮协作具体跑一遍：从理解感受开始，调用相关记忆，再经过编排、执行、验证与沉淀，最后反哺下一次理解。
@@ -326,10 +391,10 @@
         </div>
       </section>
 
-      <!-- P9 双引擎成长蓝图：两条泳道、四个阶段 -->
-      <section class="slide" id="p9">
+      <!-- P11 双引擎成长蓝图：两条泳道、四个阶段 -->
+      <section class="slide" id="p11">
         <div class="slide__inner slide__inner--wide">
-          <p class="eyebrow">CHAPTER II · 09 &nbsp;/&nbsp; TWO-ENGINE EVOLUTION BLUEPRINT</p>
+          <p class="eyebrow">CHAPTER II · 11 &nbsp;/&nbsp; TWO-ENGINE EVOLUTION BLUEPRINT</p>
           <h2 class="reveal">双引擎成长蓝图：现在在哪里，下一步去哪里</h2>
           <p class="lead reveal" data-delay="1">
             记忆与编排不是两张孤立的路线图，而是同一套项目章程的两条成长泳道：一期已经运行，后续逐期增强。
@@ -339,14 +404,14 @@
               <span><span class="dot dot--solid"></span>当前已验证</span>
               <span><span class="dot dot--dash"></span>规划路线</span>
             </div>
-            <div class="bp__grid" id="bpGrid">
+            <div class="bp__grid" id="blueprintGrid">
               <!-- 四列由 JS 注入 -->
             </div>
             <div class="bp__rails">
-              <span class="bp__railtag">贯穿四期的三道护栏</span>
+              <span class="bp__railtag">贯穿四期的项目护栏</span>
               <span class="rail-guard">当前证据高于历史记忆</span>
-              <span class="rail-guard">项目隔离 · 显式晋升</span>
-              <span class="rail-guard">人类最终授权</span>
+              <span class="rail-guard">独立 worktree · 运行环境隔离</span>
+              <span class="rail-guard"><code>main</code> ≠ production · 固定 release · 明确授权 · 可回滚</span>
             </div>
             <p class="bp__refs">
               理论参考：<a href="https://arxiv.org/abs/2309.02427" target="_blank" rel="noopener">CoALA</a> ·
@@ -363,10 +428,10 @@
         </div>
       </section>
 
-      <!-- P10 收束 -->
-      <section class="slide slide--closing" id="p10">
+      <!-- P12 收束 -->
+      <section class="slide slide--closing" id="p12">
         <div class="slide__inner">
-          <p class="eyebrow">CHAPTER II · 10 &nbsp;/&nbsp; FROM TASKS TO PROJECTS</p>
+          <p class="eyebrow">CHAPTER II · 12 &nbsp;/&nbsp; FROM TASKS TO PROJECTS</p>
           <h2 class="reveal">从完成任务，到持续完成项目</h2>
           <div class="closer closer--center">
             <p class="closer__line reveal" data-delay="2">模型会更新，工具会更替，Skill 会退化。</p>
@@ -385,7 +450,7 @@
     <!-- 演讲模式控制条 -->
     <div class="deck-ctrl" id="deckCtrl" hidden>
       <button id="deckPrev" aria-label="上一页">‹</button>
-      <span id="deckNum">1 / 10</span>
+      <span id="deckNum">1 / 12</span>
       <button id="deckNext" aria-label="下一页">›</button>
     </div>
 
