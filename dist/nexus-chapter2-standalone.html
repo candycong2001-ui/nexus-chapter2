@@ -64,13 +64,13 @@ button { font: inherit; cursor: pointer; }
 /* ---------- Topbar ---------- */
 .topbar {
   position: sticky; top: 0; z-index: 40;
-  display: flex; justify-content: center; align-items: center; gap: 18px;
-  min-height: 64px; padding: 10px 26px;
+  display: grid; grid-template-columns: auto minmax(0, 1fr) auto; align-items: center; gap: 12px;
+  min-height: 64px; padding: 8px 20px;
   background: rgba(2, 6, 23, 0.85);
   border-bottom: 1px solid var(--line);
   backdrop-filter: blur(16px);
 }
-.brand-mark { position: absolute; left: 26px; display: inline-flex; align-items: center; gap: 10px; }
+.brand-mark { display: inline-flex; align-items: center; gap: 10px; }
 .brand-mark__glyph {
   display: inline-grid; width: 36px; height: 36px; place-items: center;
   border: 1px solid rgba(34, 211, 238, 0.4); border-radius: 8px;
@@ -80,16 +80,14 @@ button { font: inherit; cursor: pointer; }
 .brand-mark strong, .brand-mark small { display: block; }
 .brand-mark strong { font-size: 0.96rem; line-height: 1.1; }
 .brand-mark small { color: var(--muted); font-size: 0.7rem; }
-.nav-links { display: flex; gap: 2px; max-width: min(840px, calc(100vw - 300px)); overflow-x: auto; scrollbar-width: none; }
-.nav-links::-webkit-scrollbar { display: none; }
+.nav-links { display: flex; justify-content: center; flex-wrap: wrap; gap: 2px; min-width: 0; overflow: visible; }
 .nav-links a {
-  padding: 7px 11px; border-radius: 8px; font-size: 0.82rem; color: var(--muted);
+  padding: 6px 4px; border-radius: 8px; font-size: clamp(0.7rem, 0.92vw, 0.82rem); color: var(--muted);
   white-space: nowrap; transition: color .2s, background .2s;
 }
 .nav-links a:hover, .nav-links a.is-active { color: #fff; background: rgba(148,163,184,0.12); }
 .presentation-toggle {
-  position: absolute; right: 26px;
-  padding: 8px 16px; border-radius: 999px; color: #e0f2fe;
+  padding: 8px 13px; border-radius: 999px; color: #e0f2fe;
   border: 1px solid rgba(34,211,238,0.4); background: rgba(34,211,238,0.1);
   font-size: 0.82rem; transition: background .2s;
 }
